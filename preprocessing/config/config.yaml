@@ -1,10 +1,10 @@
 ---
 apis:
-  camera_group: "http://127.0.0.1:8000/getCameraGroup"
-  preprocess_config: "http://127.0.0.1:8000/getCameraGroup"
-  schedule_config: "http://127.0.0.1:8000/getCameraConfig"
+  camera_group: "http://localhost:8000/getCameraGroup"
+  preprocess_config: "http://localhost:8000/getCameraGroup"
+  schedule_config: "http://localhost:8000/getCameraConfig"
   postprocess_config: "http://localhost:8000/getpostprocess"
-  usecase_urls: "http://127.0.0.1:8000/getusecase"
+  usecase_urls: "http://localhost:8000/getusecase"
   classes: "http://localhost:8000/getclasses"
   computation: "http://localhost:8000/getcomputation"
   incidents: "http://localhost:8000/getincidents"

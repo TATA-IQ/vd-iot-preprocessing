@@ -146,10 +146,11 @@ class RawImageConsumer():
                             #json_data=json.loads(data_packet)
                             # print(data_packet)
                             try:
-                                response=requests.post("http://localhost:8005/postprocess",json=data_packet, timeout=5)
+                                response=requests.post("http://172.16.0.204:8005/postprocess",json=data_packet, timeout=5)
                                 print(f"camera id {self.camera_id} usecase_id {i}")
                                 print(response.text,"8005")
                             except Exception as ex:
+                                print("****",ex)
                                 print("Timout 8005")
                             try:
                                 response=requests.post("http://localhost:8006/postprocess",json=data_packet, timeout=5)

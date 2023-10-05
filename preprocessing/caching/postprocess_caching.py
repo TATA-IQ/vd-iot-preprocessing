@@ -33,12 +33,14 @@ class PersistPostProcessConfig():
             return []
     def persistData(self):
         usecaselist=self.get_usecase(self.apis["usecase_urls"])
+        usecaselist=[2]
         if len(usecaselist)>0:
 
             postconf_data=self.apiCall(self.apis["postprocess_config"],{"usecase_id":usecaselist})
             postconfigdata={}
+            print("======")
             for dt in postconf_data:
-                print("=====",dt)
+                print("========post config=====",dt)
                 if dt["usecase_id"] not in postconfigdata.keys():
                     postconfigdata[dt["usecase_id"]]={}
                     postconfigdata[dt["usecase_id"]]["image_height"]=dt["image_height"]
@@ -57,6 +59,8 @@ class PersistPostProcessConfig():
                     postconfigdata[dt["usecase_id"]]["steps"][dt["step_no"]]["model_id"]=dt["model_id"]
                     incidentresponse=requests.get(self.apis["incidents"],json={"usecase_id":dt["usecase_id"]})
                     incidentjson= incidentresponse.json()["data"]
+                    print("========incident json========")
+                    print(incidentjson)
                     for inc in incidentjson:
                         
                         postconfigdata[dt["usecase_id"]]["incidents"][inc["incident_id"]]={}
@@ -78,7 +82,8 @@ class PersistPostProcessConfig():
                     if dt["model_id"] is not None:
                         classresponse=requests.get(self.apis["classes"],json={"usecase_id":dt["usecase_id"]})
                         modeldata=classresponse.json()["data"]
-                        print("********+++++",dt["usecase_id"],modeldata)
+                        print("********ModelData=======",dt["model_id"])
+                        print(modeldata)
 
 
                         for md in modeldata:
@@ -131,7 +136,7 @@ class PersistPostProcessConfig():
                         postconfigdata[dt["usecase_id"]]["steps"][dt["step_no"]]["computation_id"]=dt["computation_id"]
                         postconfigdata[dt["usecase_id"]]["steps"][dt["step_no"]]["model_id"]=dt["model_id"]
                         if dt["model_id"] is not None:
-                            response=requests.get(self.apis["classes"],json={"usecase_id":1})
+                            response=requests.get(self.apis["classes"],json={"usecase_id":dt["usecase_id"]})
                             modeldata=response.json()["data"]
                             print("********",modeldata)
 
