@@ -1,0 +1,11 @@
+[{'apis': {'camera_group': 'http://127.0.0.1:8000/getCameraGroup', 'preprocess_config': 'http://127.0.0.1:8000/getCameraGroup', 'schedule_config': 'http://127.0.0.1:8000/getCameraConfig'}, 'kafka': ['172.16.0.175:9092', '172.16.0.171:9092', '172.16.0.174:9092'], 'readConfig': True, 'config': {'customer': [1, 2, 3], 'subsite': [1, 2, 3], 'location': [1, 2, 3], 'group': [1, 2, 3]}}]
+['172.16.0.175:9092', '172.16.0.171:9092', '172.16.0.174:9092']
+Starting consumer==== 1
+Starting consumer==== 4
+Starting consumer==== 5
+=====Removing Shared Memory Refrence=====
+==1 Message Parse Connected for Topic 1_1====
+=========Got Data For===== 1 1
+==4 Message Parse Connected for Topic 1_4====
+=========Got Data For===== 4 1
+==5 Message Parse Connected for Topic 1_5====
