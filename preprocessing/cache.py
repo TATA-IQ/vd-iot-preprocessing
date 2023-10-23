@@ -1,10 +1,10 @@
+from caching.rediscaching import Caching
 from src.parser import Config
-from caching.rediscaching import Caching 
 
-path="config/config.yaml"
-configdata=Config.yamlconfig(path)[0]
-print (configdata)
-api=configdata["apis"]
+path = "config/config.yaml"
+configdata = Config.yamlconfig(path)[0]
+print(configdata)
+api = configdata["apis"]
 if configdata:
     try:
         customer = configdata["config"]["customer"]
@@ -27,10 +27,10 @@ if configdata:
         print("Camera Group Not Found: ", ex)
         camera_group = None
 
-cs = Caching(api,camera_group,customer,location,subsite)
-cs.persistData()
-#cs.checkEvents()
-    
-    
-
- 
+if __name__ == "__main__":
+    '''
+    Start Preprocess Caching
+    '''
+    cs = Caching(api, camera_group, customer, location, subsite)
+    #cs.persist_data()
+    cs.checkEvents()

@@ -1,21 +1,47 @@
-import numpy as np
+"""
+Preprocessing
+"""
 import cv2
 from scipy import ndimage
-class PreProcess():
-   
-    def process(self,image,preconfigjson):
+
+
+class PreProcess:
+    '''
+    Preprocess Configuration
+    '''
+    def process(self, image, preconfigjson):
+        """
+        Starts the preprocessing of image based on the configuration
+        Args:
+            image (np.array): image as numpy array
+            preconfigjson (dict or json): preprocessing configuration like brightness, rotation etc.
+        returns:
+            image (np.array): preprocessed image as numpy array
+        """
         if preconfigjson["brightness"] is not None:
-            image=self.brightness_change(image,preconfigjson["brightness"])
-        if preconfigjson["contrast_alpha"] is not None and preconfigjson["contrast_beta"] and preconfigjson["contrast_sigma_one"] is not None and preconfigjson["contrast_sigma_two"] is not None:
-            image=self.contrast_change(image,preconfigjson["contrast_alpha"], preconfigjson["contrast_beta"],  preconfigjson["contrast_sigma_one"],preconfigjson["contrast_sigma_two"] )
+            image = self.brightness_change(image, preconfigjson["brightness"])
+        if (
+            preconfigjson["contrast_alpha"] is not None
+            and preconfigjson["contrast_beta"]
+            and preconfigjson["contrast_sigma_one"] is not None
+            and preconfigjson["contrast_sigma_two"] is not None
+        ):
+            image = self.contrast_change(
+                image,
+                preconfigjson["contrast_alpha"],
+                preconfigjson["contrast_beta"],
+                preconfigjson["contrast_sigma_one"],
+                preconfigjson["contrast_sigma_two"],
+            )
         if preconfigjson["orientation_degree"] is not None:
-            image=self.rotate_change(image,preconfigjson["orientation_degree"])
+            image = self.rotate_change(image, preconfigjson["orientation_degree"])
         # if preconfigjson["image_height"] is not None and preconfigjson["image_width"] is not None:
         #     print("===>",preconfigjson["image_height"] )
         #     image=self.resize_image(image,preconfigjson["image_width"],preconfigjson["image_height"])
-        print("=====image=====")
-        print(image)
+        # print("=====image=====")
+        # print(image)
         return image
+
     def resize_image(self, image, width=None, height=None, inter=cv2.INTER_AREA):
         """
         performs resize of an image
@@ -47,7 +73,8 @@ class PreProcess():
             resized = cv2.resize(image, dim, interpolation=inter)
             # return the resized image
             return resized
-    def brightness_change(self,image,bright):
+
+    def brightness_change(self, image, bright):
         """
         Preprocessing for brihtness
         Args:
@@ -55,11 +82,10 @@ class PreProcess():
         returns:
             image (np.array): image after preprocessing applied
         """
-        image= cv2.convertScaleAbs(image, beta=float(bright))
+        image = cv2.convertScaleAbs(image, beta=float(bright))
         return image
-        
-    
-    def contrast_change(self,image,alpha,beta,sigma_1,sigma_2):
+
+    def contrast_change(self, image, alpha, beta, sigma_1, sigma_2):
         """
         Preprocessing for contrast_alpha
         Args:
@@ -67,16 +93,21 @@ class PreProcess():
         returns:
             image (np.array): image after preprocessing applied
         """
-        image= cv2.convertScaleAbs(image, alpha=float(alpha), beta=float(beta))
-        enhancedimage=cv2.detailEnhance(image, sigma_s=float(sigma_1), sigma_r=float(sigma_2))
+        image = cv2.convertScaleAbs(image, alpha=float(alpha), beta=float(beta))
+        enhancedimage = cv2.detailEnhance(image, sigma_s=float(sigma_1), sigma_r=float(sigma_2))
         return enhancedimage
-    def rotate_change(self,image,value):
-        
-        return ndimage.rotate(image,float(value),reshape=True)
 
-    
+    def rotate_change(self, image, value):
+        """
+        Rotate Image
+        Args:
+            image (np.array): numpy array of image
+        returns:
+            value: rotation value
+        """
+        return ndimage.rotate(image, float(value), reshape=True)
 
-    def mask_image(self,image):
+    def mask_image(self, image):
         """
         Preprocessing for masking image
         Args:
@@ -87,7 +118,7 @@ class PreProcess():
 
         return image
 
-    def split_rows(self,image):
+    def split_rows(self, image):
         """
         Preprocessing for split rows
         Args:
@@ -97,7 +128,7 @@ class PreProcess():
         """
         return image
 
-    def split_columns(self,image):
+    def split_columns(self, image):
         """
         Preprocessing for split columns
         Args:
@@ -107,7 +138,7 @@ class PreProcess():
         """
         return image
 
-    def split(self,image):
+    def split(self, image):
         """
         Preprocessing for split image
         Args:
@@ -117,7 +148,7 @@ class PreProcess():
         """
         return image
 
-    def threshold(self,image):
+    def threshold(self, image):
         """
         Preprocessing for threshold
         Args:
@@ -126,6 +157,3 @@ class PreProcess():
             image (np.array): image after preprocessing applied
         """
         return image
-    
-
-    

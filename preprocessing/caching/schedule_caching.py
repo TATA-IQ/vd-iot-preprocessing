@@ -1,46 +1,60 @@
+"""
+Scheduler Configuration Caching
+"""
 import requests
-class PersistSchedule():
+
+
+class PersistSchedule:
     """
     This Class fetch all the data related to scheduling
     """
 
-    def __init__(self, url="http://127.0.0.1:8000/getScheduleMaster"):
+    def __init__(self, url):
+        """
+        Saving scheduling to cache
+        Args:
+            url (str): schedule rest api url
+        """
         self.url = url
         self.scheduledata = None
 
-    def apiCall(self, data: dict = None) -> list:
+    def apiCall(self, query: dict = None) -> list:
         """
         Call the api for camera config
         Args:
-            data: request query
+            query (dict or json): request query
         returns:
-            list: detail  data of requested query
+            scheduledata (list): detail  data of requested query
         """
         cameraconfdata = []
-        if data is None:
+        if query is None:
             print("None")
-            resposnse = requests.get(self.url, json={}, timeout=50)
+            response_schedule = requests.get(self.url, json={}, timeout=50)
         else:
-            resposnse = requests.get(self.url, json=data, timeout=50)
-            #sts.get(self.url, json=data, timeout=50)
+            response_schedule = requests.get(self.url, json=query, timeout=50)
+            # sts.get(self.url, json=data, timeout=50)
         # print(resposnse)
         # print(resposnse.json())
-        scheduledata=None
-        if resposnse.status_code == 200:
-            scheduledata = resposnse.json()["data"]
+        scheduledata = None
+        if response_schedule.status_code == 200:
+            scheduledata = response_schedule.json()["data"]
         return scheduledata
 
+    def persist_data(self, jsonreq={}):
+        """
+        Prepare scheduling configuration and send it to rediscaching module to save the data
+        returns:
+            schedule_config (dict): schedule configuration dict
 
-    def persistData(self,jsonreq={}):
-        
-        data= self.apiCall(jsonreq)
+        """
+        data = self.apiCall(jsonreq)
         dictres = {}
 
         dictres["scheduling"] = {}
-        tempdict = {}
+        schedule_config = {}
         for dt in data:
             dt["current_state"] = True
-            tempdict[dt["schedule_id"]] = dt
-        dictres["scheduling"] = tempdict
-        
-        return tempdict, data
+            schedule_config[dt["schedule_id"]] = dt
+        dictres["scheduling"] = schedule_config
+
+        return schedule_config, data

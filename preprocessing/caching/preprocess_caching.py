@@ -1,21 +1,30 @@
+"""
+PreProcess Configuration
+"""
 import requests
 
-class PersistPreprocessConfig():
+
+class PersistPreprocessConfig:
     """
     This class fetch camera config details from rest api
     Caching is on level {"camera_id":{"usecase_id":data}}
     """
 
     def __init__(self, url="http://127.0.0.1:8000/getPreprocessConfig"):
+        """
+        Saving Preprocessing To Cache
+        Args:
+            url (str): url of preprocess configuration api
+        """
         self.url = url
 
-    def apiCall(self, data: dict = None) -> list:
+    def api_call(self, data: dict = None) -> list:
         """
         Call the api for camera config
         Args:
-            data: request query
+            data (json or dict): request query
         returns:
-            list: detail  data of requested query
+            responsedata (list): detail  data of requested query
         """
         responsedata = []
         if data is None:
@@ -29,61 +38,63 @@ class PersistPreprocessConfig():
             responsedata = resposnse.json()["data"]
         return responsedata
 
+    def persist_data(self, data):
+        """
+        Call the api for camera config
+        Args:
+            data (json or dict): request query
+        returns:
+            preprocess_config_dict (dict): detail  data of preprocessing configuration
+        """
+        print("data====>", data)
+        preprocessconf = self.api_call(data=data)
+        # print(preprocessconf)
+        preprocess_config_dict = {}
+        # brightness = []
+        # contrast_alpha = []
+        # contrast_beta = []
+        # mask_image = []
+        # split = []
+        # split_columns = []
+        # split_rows = []
+        # threshold = []
+        # preprocess_name = []
+        # preprocess_type = []
+        # scheduling_id = []
+        # usecase_id = []
+        # uscase_name = []
 
-    def persistData(self, data):
-        print("data====>",data)
-        preprocessconf = self.apiCall(data=data)
-        #print(preprocessconf)
-        tempdict = {}
-        brightness=[]
-        contrast_alpha=[]
-        contrast_beta=[]
-        mask_image=[]
-        split=[]
-        split_columns=[]
-        split_rows=[]
-        threshold=[]
-        preprocess_name=[]
-        preprocess_type=[]
-        scheduling_id=[]
-        usecase_id=[]
-        uscase_name=[]
-         
         for dt in preprocessconf:
-            #dt["schedule_id"] = scheduledata["schedule_id"]
+            # dt["schedule_id"] = scheduledata["schedule_id"]
             print(dt)
-            if dt["camera_id"] not in tempdict.keys():
+            if dt["camera_id"] not in preprocess_config_dict.keys():
                 print("===>if")
-                tempdict[dt["camera_id"]] = {}
+                preprocess_config_dict[dt["camera_id"]] = {}
 
-                tempdict[dt["camera_id"]][dt["usecase_id"]]=dt
+                preprocess_config_dict[dt["camera_id"]][dt["usecase_id"]] = dt
             else:
-                tempdict[dt["camera_id"]][dt["usecase_id"]]=dt
+                preprocess_config_dict[dt["camera_id"]][dt["usecase_id"]] = dt
                 print("else*********")
 
-                # tempdict[dt["camera_id"]["camera_grouplist_id"]]=dt["camera_grouplist_id"]
-                # tempdict[dt["camera_id"]["camera_group_id"]]=dt["camera_group_id"]
-                # tempdict[dt["camera_id"]["pre_config_id"]]=dt["pre_config_id"]
-                # tempdict[dt["camera_id"]["preprocess_id"]]=dt["preprocess_id"]
-                # tempdict[dt["camera_id"]["brightness"]]=dt["brightness"]
-                # tempdict[dt["camera_id"]["contrast_alpha"]]=dt["contrast_alpha"]
-                # tempdict[dt["camera_id"]["contrast_beta"]]=dt["contrast_beta"]
-                # tempdict[dt["camera_id"]["mask_image"]]=dt["mask_image"]
-                # tempdict[dt["camera_id"]["split"]]=dt["split"]
-                # tempdict[dt["camera_id"]["split_columns"]]=dt["split_columns"]
-                # tempdict[dt["camera_id"]["split_rows"]]=dt["split_rows"]
-                # tempdict[dt["camera_id"]["threshold"]]=dt["threshold"]
-                
-
-
-
+                # preprocess_config_dict[dt["camera_id"]["camera_grouplist_id"]]=dt["camera_grouplist_id"]
+                # preprocess_config_dict[dt["camera_id"]["camera_group_id"]]=dt["camera_group_id"]
+                # preprocess_config_dict[dt["camera_id"]["pre_config_id"]]=dt["pre_config_id"]
+                # preprocess_config_dict[dt["camera_id"]["preprocess_id"]]=dt["preprocess_id"]
+                # preprocess_config_dict[dt["camera_id"]["brightness"]]=dt["brightness"]
+                # preprocess_config_dict[dt["camera_id"]["contrast_alpha"]]=dt["contrast_alpha"]
+                # preprocess_config_dict[dt["camera_id"]["contrast_beta"]]=dt["contrast_beta"]
+                # preprocess_config_dict[dt["camera_id"]["mask_image"]]=dt["mask_image"]
+                # preprocess_config_dict[dt["camera_id"]["split"]]=dt["split"]
+                # preprocess_config_dict[dt["camera_id"]["split_columns"]]=dt["split_columns"]
+                # preprocess_config_dict[dt["camera_id"]["split_rows"]]=dt["split_rows"]
+                # preprocess_config_dict[dt["camera_id"]["threshold"]]=dt["threshold"]
 
             # else:
             #     pass
 
             # else:
-            #     tempdict[dt["camera_group_id"]].append(dt)
-            #print("******")
-            #print(tempdict)
+            #     preprocess_config_dict[dt["camera_group_id"]].append(dt)
+            # print("******")
+            # print(preprocess_config_dict)
 
-        return tempdict
+        return preprocess_config_dict
