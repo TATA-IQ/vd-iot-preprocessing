@@ -1,6 +1,6 @@
 import json
 import time
-from concurrent.futures import ProcessPoolExecutor
+from concurrent.futures import ProcessPoolExecutor, ThreadPoolExecutor
 from multiprocessing import Manager, Queue
 
 import redis
@@ -87,7 +87,7 @@ class PoolConsumer:
         futuredict = {}
         # queudict={}
         # statusdict={}
-        executor = ProcessPoolExecutor(10)
+        executor = ProcessPoolExecutor(30)
         while True:
             scheduledata = json.loads(self.r.get("scheduling"))
             camdata = json.loads(self.r.get("preprocess"))
@@ -135,7 +135,7 @@ class PoolConsumer:
                         preprocess_smd[str(cam_id)] = preproceesdata
                         self.log.info(f"Updating Data for {cam_id}", preproceesdata)
                         # print(preprocess_smd)
-                        print("========Updating by Update=====")
+                        # print("========Updating by Update=====")
                         # print(preprocess_smd[str(cam_id)])
                         # executor.submit(statusdict[cam_id].update,"updated by parent")
                         # print("*"*100)
@@ -157,7 +157,7 @@ class PoolConsumer:
                         # else:
                         # print("Updating===>",cam_id)
 
-                    time.sleep(3)
-            # print(statusdict)
-            time.sleep(5)
+            #         time.sleep(3)
+            # # print(statusdict)
+            time.sleep(2)
             # print("preprocess_smd===>",postprocess_smd)

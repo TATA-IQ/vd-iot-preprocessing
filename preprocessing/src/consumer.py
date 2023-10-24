@@ -65,7 +65,7 @@ class RawImageConsumer:
         Connect with consumer on the assigned topic
         """
         # session_timeout_ms=10000,heartbeat_interval_ms=7000,
-        self.queue = Queue(100)
+        self.queue = Queue(10)
         self.consumer = KafkaConsumer(
             "in_" + self.topic,
             bootstrap_servers=self.kafkahost,
@@ -140,7 +140,7 @@ class RawImageConsumer:
         print("===create packet called====")
         image_string = cv2.imencode(".jpg", image)[1].tobytes().decode("ISO-8859-1")
         metadata["usecase"] = {}
-        metadata["usecase"]["id"] = int(usecase_id)
+        metadata["usecase"]["usecase_id"] = int(usecase_id)
         metadata["usecase"]["name"] = usecase_name
         metadata["pipeline_inform"] = {}
         metadata["pipeline_inform"]["preprocess_id"] = preprocess_id
@@ -220,7 +220,7 @@ class RawImageConsumer:
                             try:
                                 print("=====calling api===")
                                 response = requests.post(
-                                    "http://localhost:8007/postprocess", json=data_packet, timeout=5
+                                    "http://172.16.0.178:8007/postprocess", json=data_packet, timeout=5
                                 )
 
                                 print(f"camera id {self.camera_id} usecase_id {i} ")
