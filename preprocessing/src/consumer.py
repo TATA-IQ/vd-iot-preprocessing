@@ -155,6 +155,10 @@ class RawImageConsumer:
             "postprocess_config": postprocess,
             "boundary_config": boundary,
         }
+    def multiple_consumer(self):
+        thread_executor=ThreadPoolExecutor(max_workers=4)
+        for i in range(0,4):
+            thread_executor.submit(self.runConsumer)
 
     def runConsumer(self):
         """
@@ -176,7 +180,7 @@ class RawImageConsumer:
                 usecase = list(data.keys())
                 print("********usecase for camera*******", self.camera_id)
                 print(usecase)
-                fetchtime = (datetime.now() - self.previous_time).total_seconds()
+                
                 self.previous_time = datetime.now()
                 raw_data, imgtime, image = self.messageParser(message)
                 fetchtime = (datetime.now() - imgtime).total_seconds()

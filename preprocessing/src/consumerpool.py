@@ -29,7 +29,7 @@ def testFuture(obj):
 
     
     # queudict[cam_id]=q
-    obj.runConsumer()
+    obj.multiple_consumer()
 
     # obj.callConsumer()
 

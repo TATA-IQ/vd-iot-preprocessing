@@ -1,48 +1,33 @@
-# PreProcessing
+# Introduction 
+This is a storage repo. 
 
-[![Release](https://img.shields.io/github/v/release/./PreProcessing)](https://img.shields.io/github/v/release/./PreProcessing)
-[![Build status](https://img.shields.io/github/actions/workflow/status/./PreProcessing/main.yml?branch=main)](https://github.com/./PreProcessing/actions/workflows/main.yml?query=branch%3Amain)
-[![codecov](https://codecov.io/gh/./PreProcessing/branch/main/graph/badge.svg)](https://codecov.io/gh/./PreProcessing)
-[![Commit activity](https://img.shields.io/github/commit-activity/m/./PreProcessing)](https://img.shields.io/github/commit-activity/m/./PreProcessing)
-[![License](https://img.shields.io/github/license/./PreProcessing)](https://img.shields.io/github/license/./PreProcessing)
+# How It Works
 
-This module contains the code for preprocessing and postprocessing configuration
+1. Check the config for customer id, subsite id, location id or camera group id
+2. Aggregate the camera group and get all the camera config and cache the data
+3. Read camera configuration from cache
+4. Start preprocessing for camera
+5. Check for the update in cache and update the camera configurations
 
-- **Github repository**: <https://github.com/./PreProcessing/>
-- **Documentation** <https://..github.io/PreProcessing/>
-
-## Getting started with your project
-
-First, create a repository on GitHub with the same name as this project, and then run the following commands:
-
-``` bash
-git init -b main
-git add .
-git commit -m "init commit"
-git remote add origin git@github.com:./PreProcessing.git
-git push -u origin main
-```
-
-Finally, install the environment and the pre-commit hooks with 
-
-```bash
-make install
-```
-
-You are now ready to start development on your project! The CI/CD
-pipeline will be triggered when you open a pull request, merge to main,
-or when you create a new release.
-
-To finalize the set-up for publishing to PyPi or Artifactory, see
-[here](https://fpgmaas.github.io/cookiecutter-poetry/features/publishing/#set-up-for-pypi).
-For activating the automatic documentation with MkDocs, see
-[here](https://fpgmaas.github.io/cookiecutter-poetry/features/mkdocs/#enabling-the-documentation-on-github).
-To enable the code coverage reports, see [here](https://fpgmaas.github.io/cookiecutter-poetry/features/codecov/).
-
-## Releasing a new version
+# Architecture
+![Architectural Flow](preprocessing/images/preprocess.png)
 
 
+1. Each topic are executed on process pool for the faster image fetch
+2. Each task in process pool have threadpool, and each threadpool is running preprocessor once preprocessing is done, it will be send to the postprocessing api
 
----
+# Dependency
+1. This Module is dependent on the https://tatacommiot@dev.azure.com/tatacommiot/Video%20Based%20IoT/_git/vd-iot-dataapiservice
+2. This module also needs kafka broker
 
-Repository initiated with [fpgmaas/cookiecutter-poetry](https://github.com/fpgmaas/cookiecutter-poetry).
+# Installation
+1. Install Python3.9 
+2. Install redis-server
+3. poetry install
+
+# Run App
+chmod +x run.sh
+./run.sh
+
+# Docker 
+To-do: Docker Implementation
