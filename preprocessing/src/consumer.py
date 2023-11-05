@@ -60,12 +60,13 @@ class RawImageConsumer:
         else:
             return False
 
-    def connectConsumer(self):
+    def connectConsumer(self,postprocss_api):
         """
         Connect with consumer on the assigned topic
         """
         # session_timeout_ms=10000,heartbeat_interval_ms=7000,
         self.queue = Queue(10)
+        self.postprocess_api=postprocss_api
         self.consumer = KafkaConsumer(
             "in_" + self.topic,
             bootstrap_servers=self.kafkahost,
@@ -170,6 +171,7 @@ class RawImageConsumer:
         self.log.info(f"Starting Message Parsing {self.camera_id} for {self.topic}")
         # while True:
         #     print(self.consumer)
+        # print("api=======>",self.postprocess_api)
         print("=====Consumer Running=====")
         for message in self.consumer:
             print("====Frame received===")
@@ -188,68 +190,53 @@ class RawImageConsumer:
                 self.log.info(f"Fetch Time for {self.camera_id} {fetchtime}")
                 # time.sleep(0.0001)
                 # yield "abc"
+                
                 for i in usecase:
                     print("=======usecase========", i)
-                    # if preprocess_smd[self.camera_id][str(i)]["current_state"]:
-                    if str(i) in list(data.keys()):
-                        if data[str(i)]["preprocess_id"] is not None:
-                            pp = PreProcess()
+                    if preprocess_smd[self.camera_id][str(i)]["current_state"]:
+                        if str(i) in list(data.keys()):
+                            if data[str(i)]["preprocess_id"] is not None:
+                                pp = PreProcess()
 
-                            # print(self.preprocess_smd)
-                            preprocess_config_data = preprocess_smd[str(self.camera_id)][str(i)]
-                            image = np.array(pp.process(image, preprocess_config_data))
-                        print("kys====>", postprocess_smd.keys())
-                        if str(i) in list(postprocess_smd.keys()):
-                            postprocess_config = postprocess_smd[str(i)]
-                            try:
-                                boundary_config = boundary_smd[str(self.camera_id)][str(i)]
-                            except KeyError as ex:
-                                boundary_config = None
+                                # print(self.preprocess_smd)
+                                preprocess_config_data = preprocess_smd[str(self.camera_id)][str(i)]
+                                image = np.array(pp.process(image, preprocess_config_data))
+                            print("kys====>", postprocess_smd.keys())
+                            if str(i) in list(postprocess_smd.keys()):
+                                postprocess_config = postprocess_smd[str(i)]
+                                try:
+                                    boundary_config = boundary_smd[str(self.camera_id)][str(i)]
+                                except KeyError as ex:
+                                    boundary_config = None
 
-                            print("===postprocess for vamera id===", self.camera_id, i)
+                                print("===postprocess for vamera id===", self.camera_id, i)
 
-                            data_packet = self.create_packet(
-                                data[str(i)]["preprocess_id"],
-                                "",
-                                data[str(i)]["camera_group_id"],
-                                i,
-                                data[str(i)]["usecase_name"],
-                                image,
-                                raw_data,
-                                self.topic,
-                                postprocess_config,
-                                boundary_config,
-                            )
-
-                            try:
-                                print("=====calling api===")
-                                response = requests.post(
-                                    "http://172.16.0.178:8007/postprocess", json=data_packet, timeout=5
+                                data_packet = self.create_packet(
+                                    data[str(i)]["preprocess_id"],
+                                    "",
+                                    data[str(i)]["camera_group_id"],
+                                    i,
+                                    data[str(i)]["usecase_name"],
+                                    image,
+                                    raw_data,
+                                    self.topic,
+                                    postprocess_config,
+                                    boundary_config,
                                 )
 
-                                print(f"camera id {self.camera_id} usecase_id {i} ")
-                                print(response.text, "8007")
-                            except Exception as ex:
-                                print("Timeout on 8007")
-                            # try:
-                            #     response = requests.post(
-                            #         "http://172.16.0.204:8005/postprocess", json=data_packet, timeout=5
-                            #     )
+                                try:
+                                    print("=====calling api===")
+                                    response = requests.post(
+                                        self.postprocess_api, json=data_packet, timeout=5
+                                    )
 
-                            #     print(f"camera id {self.camera_id} usecase_id {i} ")
-                            #     print(response.text, "8005")
-                            # except ConnectionError as ex:
-                            #     print("Timeout on 8005")
+                                    print(f"camera id {self.camera_id} usecase_id {i} ")
+                                    print(response.text, "8007")
+                                except Exception as ex:
+                                    print("Timeout on 8007")
+                            
 
-                        # else:
-                        #     print("=====not in smd====",i)
-                        #     print("keys",postprocess_smd.keys())   #del data_packet
-            # gc.collect()
-
-            # except Exception as ex:
-            #     print("===exception===",ex)
-            #     print(data[str(i)])
-            # time.sleep(5)
+                        
 
     def callConsumer(self):
         print(self.runConsumer())

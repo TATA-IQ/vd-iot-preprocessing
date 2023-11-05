@@ -27,16 +27,20 @@ class PersistBoundaryConfig:
         """
         cameraconfdata = []
         boundary_data = []
-        if query is None:
-            print("None")
-            resposnse_boundary = requests.get(url, json={}, timeout=50)
-        else:
-            resposnse_boundary = requests.get(url, json=query, timeout=50)
-        # print(resposnse)
-        # print(resposnse.json())
-        print(url, query)
-        if resposnse_boundary.status_code == 200:
-            boundary_data = resposnse_boundary.json()["data"]
+        try:
+            if query is None:
+                print("None")
+                resposnse_boundary = requests.get(url, json={}, timeout=50)
+            else:
+                resposnse_boundary = requests.get(url, json=query, timeout=50)
+            # print(resposnse)
+            # print(resposnse.json())
+            print(url, query)
+            if resposnse_boundary.status_code == 200:
+                boundary_data = resposnse_boundary.json()["data"]
+        except Exception as ex:
+            print("Exception while fetching Boundary Configuration: ",ex)
+            pass
         return boundary_data
 
     def get_usecase(self, usecase_url):
@@ -71,8 +75,13 @@ class PersistBoundaryConfig:
                 if bd["camera_id"] not in boundaryconfig:
                     boundaryconfig[bd["camera_id"]] = {}
                     boundaryconfig[bd["camera_id"]][bd["usecase_id"]] = {}
+                    
                     boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]] = {}
                     boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["boundary_coordinates"] = {}
+                    boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["image_width"]=bd["image_width"]
+                    boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["image_height"]=bd["image_height"]
+                    boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["color"]=bd["color"]
+                    boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["incident_id"]=bd["incident_id"]
                     boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["boundary_coordinates"][
                         "x"
                     ] = [bd["x_coordinate"]]
@@ -83,6 +92,11 @@ class PersistBoundaryConfig:
                     print("===else===")
                     if bd["boundary_id"] not in boundaryconfig[bd["camera_id"]][bd["usecase_id"]]:
                         boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]] = {}
+                        boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["color"]=bd["color"]
+                        boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["image_width"]=bd["image_width"]
+                        boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["image_height"]=bd["image_height"]
+                        
+                        boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["incident_id"]=bd["incident_id"]
                         boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]][
                             "boundary_coordinates"
                         ] = {}

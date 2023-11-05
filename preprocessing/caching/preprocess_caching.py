@@ -27,15 +27,18 @@ class PersistPreprocessConfig:
             responsedata (list): detail  data of requested query
         """
         responsedata = []
-        if data is None:
-            print("None")
-            resposnse = requests.get(self.url, json={}, timeout=50)
-        else:
-            resposnse = requests.get(self.url, json=data, timeout=50)
-        # print(resposnse)
-        # print(resposnse.json())
-        if resposnse.status_code == 200:
-            responsedata = resposnse.json()["data"]
+        try:
+            if data is None:
+                print("None")
+                resposnse = requests.get(self.url, json={}, timeout=50)
+            else:
+                resposnse = requests.get(self.url, json=data, timeout=50)
+            # print(resposnse)
+            # print(resposnse.json())
+            if resposnse.status_code == 200:
+                responsedata = resposnse.json()["data"]
+        except Exception as ex:
+            print("Exception while preprocess caching: ",ex)
         return responsedata
 
     def persist_data(self, data):

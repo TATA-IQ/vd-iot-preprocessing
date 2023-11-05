@@ -173,17 +173,15 @@ class Caching:
         self.r.set("boundary", json.dumps(boundaryconfig))
         print(preprocessconfig.keys())
 
-    def checkEvents(self):
+    def checkEvents(self,kafka,topic):
         """
         Continuously checking the kafka for config update, once it gets the event it will update the cache
         """
+        self.persist_data()
+        print(kafka, topic)
         consumer = KafkaConsumer(
-            "app_events",
-            bootstrap_servers=[
-                "172.16.0.175:9092",
-                "172.16.0.171:9092",
-                "172.16.0.174:9092",
-            ],
+            topic,
+            bootstrap_servers=kafka,
             auto_offset_reset="latest",
             value_deserializer=lambda m: json.loads(m.decode("utf-8")),
             group_id="preprocess_cache",

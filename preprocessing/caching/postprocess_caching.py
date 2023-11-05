@@ -60,17 +60,20 @@ class PersistPostProcessConfig:
         cameraconfdata = []
         responsedata = []
         print("*******data", data)
-        if data is None:
-            print("None")
-            resposnse = requests.get(url, json={}, timeout=50)
-        else:
-            resposnse = requests.get(url, json=data, timeout=50)
-        # print(resposnse)
-        print(resposnse.json())
-        print(url, data)
-        if resposnse.status_code == 200:
-            responsedata = resposnse.json()["data"]
-            print(responsedata)
+        try:
+            if data is None:
+                print("None")
+                resposnse = requests.get(url, json={}, timeout=50)
+            else:
+                resposnse = requests.get(url, json=data, timeout=50)
+            # print(resposnse)
+            print(resposnse.json())
+            print(url, data)
+            if resposnse.status_code == 200:
+                responsedata = resposnse.json()["data"]
+                print(responsedata)
+        except Exception as ex:
+            print("Exception while calling postprocessing api")
         return responsedata
 
     def postprocess_master(self):
@@ -127,17 +130,48 @@ class PersistPostProcessConfig:
         # incidentjson = incidentresponse.json()["data"]
         for inc in incidentjson:
             print("=====inc======")
+            print("=====uc======",usecase_id)
             print(inc)
             print(postprocess_data)
-            if inc["incident_id"] not in postprocess_data["incidents"]:
+            if int(inc["incident_id"]) not in postprocess_data["incidents"]:
+                print("=====exist======")
                 postprocess_data["incidents"][inc["incident_id"]] = {}
                 postprocess_data["incidents"][inc["incident_id"]]["incident_id"] = inc["incident_id"]
                 postprocess_data["incidents"][inc["incident_id"]]["incident_name"] = inc["incident_name"]
                 postprocess_data["incidents"][inc["incident_id"]]["measurement_unit"] = inc["measurement_unit"]
                 postprocess_data["incidents"][inc["incident_id"]]["incident_type_id"] = inc["incident_type_id"]
                 postprocess_data["incidents"][inc["incident_id"]]["incident_type_name"] = inc["incident_type_name"]
-                postprocess_data["incidents"][inc["incident_id"]]["class_id"] = inc["class_id"]
-                postprocess_data["incidents"][inc["incident_id"]]["class_name"] = inc["class_name"]
+                
+                if "class_id" in postprocess_data["incidents"][inc["incident_id"]] and inc["class_id"] in postprocess_data["incidents"][inc["incident_id"]]["class_id"]:
+                    print("======class id exist=====")
+                    postprocess_data["incidents"][inc["incident_id"]]["class_id"].append(inc["class_id"])
+                else:
+                    print("class id not exist")
+                    postprocess_data["incidents"][inc["incident_id"]]["class_id"] = [inc["class_id"]]
+                
+                if "class_name" in postprocess_data["incidents"][inc["incident_id"]] and  inc["class_name"] in postprocess_data["incidents"][inc["incident_id"]]["class_name"]:
+
+                    postprocess_data["incidents"][inc["incident_id"]]["class_name"].append(inc["class_name"])
+                else:
+                    postprocess_data["incidents"][inc["incident_id"]]["class_name"]=[inc["class_name"]]
+            else:
+                print("=====exist====")
+                print("++++++uc+++++",usecase_id,inc["incident_id"])
+                print(postprocess_data["incidents"])
+                print(postprocess_data["incidents"][inc["incident_id"]])
+                if "class_id" in postprocess_data["incidents"][inc["incident_id"]] and inc["class_id"] not in postprocess_data["incidents"][inc["incident_id"]]["class_id"]:
+                    print("====class id exist===")
+                    postprocess_data["incidents"][inc["incident_id"]]["class_id"].append(inc["class_id"])
+                # else:
+                #     print("class id not exist***")
+                #     postprocess_data["incidents"][inc["incident_id"]]["class_id"] = [inc["class_id"]]
+                
+                if "class_name" in postprocess_data["incidents"][inc["incident_id"]] and  inc["class_name"] not  in postprocess_data["incidents"][inc["incident_id"]]["class_name"]:
+
+                    postprocess_data["incidents"][inc["incident_id"]]["class_name"].append(inc["class_name"])
+        
+        print("&&&&&&uc&&&&&",usecase_id)
+        print(postprocess_data["incidents"])
 
         return postprocess_data
 

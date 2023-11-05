@@ -193,5 +193,4 @@ class Scheduler:
             time.sleep(30)
 
 
-sc = Scheduler()
-sc.state_change()
+

@@ -17,15 +17,15 @@ preprocess_smd = SharedMemoryDict(name="preprocess", size=10000000)
 boundary_smd = SharedMemoryDict(name="boundary", size=10000000)
 
 
-text = "pqr"
+
 
 
 def testcallbackFuture(future):
     print("=======callback future====", future.exception())
 
 
-def testFuture(obj):
-    obj.connectConsumer()
+def testFuture(obj,postprocss_api):
+    obj.connectConsumer(postprocss_api)
 
     
     # queudict[cam_id]=q
@@ -35,7 +35,7 @@ def testFuture(obj):
 
 
 class PoolConsumer:
-    def __init__(self, kafkahost, logger):
+    def __init__(self, kafkahost, postprocess_api,logger):
         """
         Initialize the  Camera Group and connect with redis to take the recent configuration
         """
@@ -43,6 +43,7 @@ class PoolConsumer:
         pool = redis.ConnectionPool(host="localhost", port=6379, db=0)
         self.r = redis.Redis(connection_pool=pool)
         self.dict3 = {}
+        self.postprocss_api=postprocess_api
         self.log = logger
         # self.smd = SharedMemoryDict(name='tokens', size=1024)
 
@@ -118,7 +119,7 @@ class PoolConsumer:
                         statusdict[cam_id] = obj
                         # queudict[cam_id]=Queue()
                         print("Starting consumer====", cam_id)
-                        future1 = executor.submit(testFuture, obj)
+                        future1 = executor.submit(testFuture, obj, self.postprocss_api)
                         # executor.submit(,"dddf")
                         future1.add_done_callback(testcallbackFuture)
                         # listapp.append(future1)
@@ -150,7 +151,7 @@ class PoolConsumer:
                             obj = RawImageConsumer(self.kafkahost, cam_id, self.log)
                             statusdict[cam_id] = obj
 
-                            future1 = executor.submit(testFuture)
+                            future1 = executor.submit(testFuture, obj, self.postprocss_api)
                             # listapp.append(future1)
                             futuredict[cam_id] = future1
                             self.log.info(f"Starting New Conusmer for {cam_id}")

@@ -8,4 +8,4 @@ print(data)
 
 jsondata=json.loads(data)
 print("===========")
-print(jsondata)
+print(jsondata["10"])

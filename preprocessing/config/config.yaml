@@ -12,10 +12,16 @@ apis:
   schedule_master: "http://172.16.0.204:8051/getScheduleMaster"
   preprocess_config: "http://172.16.0.204:8051/getPreprocessConfig"
 
+postprocessing:
+  api: "http://172.16.0.178:8007/postprocess"
+
 kafka:
   - 172.16.0.175:9092
   - 172.16.0.171:9092
   - 172.16.0.174:9092
+
+event_topic:
+  - app_events
 
 readConfig: False
 config:

@@ -7,5 +7,5 @@ print("===============PreProcess Cache Data========")
 
 jsondata=json.loads(data)
 
-print(jsondata)
+print(jsondata['6'])
 

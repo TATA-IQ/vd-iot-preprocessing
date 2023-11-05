@@ -5,6 +5,8 @@ path = "config/config.yaml"
 configdata = Config.yamlconfig(path)[0]
 print(configdata)
 api = configdata["apis"]
+kafka=configdata["kafka"]
+topic=configdata["event_topic"][0]
 if configdata:
     try:
         customer = configdata["config"]["customer"]
@@ -33,4 +35,4 @@ if __name__ == "__main__":
     '''
     cs = Caching(api, camera_group, customer, location, subsite)
     #cs.persist_data()
-    cs.checkEvents()
+    cs.checkEvents(kafka, topic)

@@ -28,9 +28,10 @@ if __name__ == "__main__":
         del postprocess_smd
         del boundary_smd
         data = Config.yamlconfig("config/config.yaml")
+        postprocess_api=data[0]["postprocessing"]["api"]
         # print(data[0]["kafka"])
         logg = create_rotating_log("logs/logs.log")
-        cg = PoolConsumer(data[0]["kafka"], logg)
+        cg = PoolConsumer(data[0]["kafka"], postprocess_api ,logg)
         cg.checkState()
     except KeyboardInterrupt:
         print("=====Removing Shared Memory Refrence=====")
