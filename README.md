@@ -1,5 +1,5 @@
 # Introduction 
-This is a storage repo. 
+This is a preprocessing repo. 
 
 # How It Works
 
@@ -26,8 +26,12 @@ This is a storage repo.
 3. poetry install
 
 # Run App
-chmod +x run.sh
-./run.sh
+1. chmod +x run.sh
+2 ./run.sh
 
 # Docker 
-To-do: Docker Implementation
+1. Contenirization is enabled
+2. change the config.yaml
+3. Navigate to the Dockerfile level
+4. build the container (sudo docker build -t "preprocess")
+5. Run the container (sudo oocker run -t "preprocess")
