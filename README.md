@@ -1,5 +1,5 @@
 # Introduction 
-This is a storage repo. 
+This is a preprocessing repo. 
 
 # How It Works
 
