@@ -26,8 +26,8 @@ This is a preprocessing repo.
 3. poetry install
 
 # Run App
-chmod +x run.sh
-./run.sh
+1. chmod +x run.sh
+2 ./run.sh
 
 # Docker 
 1. Contenirization is enabled
