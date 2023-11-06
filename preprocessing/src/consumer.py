@@ -40,6 +40,7 @@ class RawImageConsumer:
         self.kafkahost = kafkashost
         self.consumer = None
         self.log = logger
+        self.postprocess_api=None
         self.check = False
         self.queue_config = None
         # self.preprocess_smd=preprocess_smd
@@ -158,8 +159,11 @@ class RawImageConsumer:
         }
     def multiple_consumer(self):
         thread_executor=ThreadPoolExecutor(max_workers=4)
+        thread_executor_list=[]
         for i in range(0,4):
-            thread_executor.submit(self.runConsumer)
+            f1=thread_executor.submit(self.runConsumer)
+            thread_executor_list.append(f1)
+        return thread_executor_list
 
     def runConsumer(self):
         """
@@ -171,8 +175,9 @@ class RawImageConsumer:
         self.log.info(f"Starting Message Parsing {self.camera_id} for {self.topic}")
         # while True:
         #     print(self.consumer)
-        # print("api=======>",self.postprocess_api)
+        print("api=======>",self.postprocess_api)
         print("=====Consumer Running=====")
+        print(self.consumer)
         for message in self.consumer:
             print("====Frame received===")
             if self.camera_id in list(preprocess_smd.keys()):

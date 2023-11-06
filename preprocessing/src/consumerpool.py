@@ -25,11 +25,19 @@ def testcallbackFuture(future):
 
 
 def testFuture(obj,postprocss_api):
+    print("====postprocess api====")
     obj.connectConsumer(postprocss_api)
 
     
     # queudict[cam_id]=q
-    obj.multiple_consumer()
+
+    thread_executor_list=obj.multiple_consumer()
+    while True:
+        for i in thread_executor_list:
+        
+            if not i.running():
+                #print("----Need to break it----")
+                break
 
     # obj.callConsumer()
 
