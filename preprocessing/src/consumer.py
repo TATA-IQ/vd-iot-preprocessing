@@ -4,7 +4,7 @@ Connect with the kafka consumers
 
 import json
 from concurrent.futures import ThreadPoolExecutor
-from datetime import datetime
+from datetime import datetime,timedelta
 from io import BytesIO
 from queue import Queue
 
@@ -20,6 +20,7 @@ from shared_memory_dict import SharedMemoryDict
 postprocess_smd = SharedMemoryDict(name="postprocess", size=10000000)
 preprocess_smd = SharedMemoryDict(name="preprocess", size=10000000)
 boundary_smd = SharedMemoryDict(name="boundary", size=10000000)
+
 
 
 class RawImageConsumer:
@@ -111,6 +112,7 @@ class RawImageConsumer:
 
     def create_packet(
         self,
+        timezone,
         preprocess_id,
         schedule_id,
         camera_group_id,
@@ -125,6 +127,7 @@ class RawImageConsumer:
         """
         create msg packet
         Args:
+            timezone (float): timezone offset
             preprocess_id (int): preprocess id
             scehdule_id (int): scheduling id
             camera_group_id (int): camera group id
@@ -144,6 +147,7 @@ class RawImageConsumer:
         metadata["usecase"] = {}
         metadata["usecase"]["usecase_id"] = int(usecase_id)
         metadata["usecase"]["name"] = usecase_name
+        metadata["time"]["incident_time"]=str(datetime.strptime(metadata["time"]["UTC_time"],"%Y-%m-%d %H:%M:%S.%f")+timedelta(seconds=timezone*60*60))
         metadata["pipeline_inform"] = {}
         metadata["pipeline_inform"]["preprocess_id"] = preprocess_id
         metadata["pipeline_inform"]["schedule_id"] = schedule_id
@@ -198,48 +202,52 @@ class RawImageConsumer:
                 
                 for i in usecase:
                     print("=======usecase========", i)
-                    if preprocess_smd[self.camera_id][str(i)]["current_state"]:
-                        if str(i) in list(data.keys()):
-                            if data[str(i)]["preprocess_id"] is not None:
-                                pp = PreProcess()
+                    #if preprocess_smd[self.camera_id][str(i)]["current_state"]:
+                    print(preprocess_smd[self.camera_id][str(i)])
+                    timezone=float(preprocess_smd[self.camera_id][str(i)]["timezone_offset"])
+                    print("timezone===>",timezone)
+                    if str(i) in list(data.keys()):
+                        if data[str(i)]["preprocess_id"] is not None:
+                            pp = PreProcess()
 
-                                # print(self.preprocess_smd)
-                                preprocess_config_data = preprocess_smd[str(self.camera_id)][str(i)]
-                                image = np.array(pp.process(image, preprocess_config_data))
-                            print("kys====>", postprocess_smd.keys())
-                            if str(i) in list(postprocess_smd.keys()):
-                                postprocess_config = postprocess_smd[str(i)]
-                                try:
-                                    boundary_config = boundary_smd[str(self.camera_id)][str(i)]
-                                except KeyError as ex:
-                                    boundary_config = None
+                            # print(self.preprocess_smd)
+                            preprocess_config_data = preprocess_smd[str(self.camera_id)][str(i)]
+                            image = np.array(pp.process(image, preprocess_config_data))
+                        print("kys====>", postprocess_smd.keys())
+                        if str(i) in list(postprocess_smd.keys()):
+                            postprocess_config = postprocess_smd[str(i)]
+                            try:
+                                boundary_config = boundary_smd[str(self.camera_id)][str(i)]
+                            except KeyError as ex:
+                                boundary_config = None
 
-                                print("===postprocess for vamera id===", self.camera_id, i)
+                            print("===postprocess for vamera id===", self.camera_id, i)
 
-                                data_packet = self.create_packet(
-                                    data[str(i)]["preprocess_id"],
-                                    "",
-                                    data[str(i)]["camera_group_id"],
-                                    i,
-                                    data[str(i)]["usecase_name"],
-                                    image,
-                                    raw_data,
-                                    self.topic,
-                                    postprocess_config,
-                                    boundary_config,
+                            data_packet = self.create_packet(
+                                timezone,
+                                data[str(i)]["preprocess_id"],
+                                "",
+                                data[str(i)]["camera_group_id"],
+                                i,
+                                data[str(i)]["usecase_name"],
+                                image,
+                                raw_data,
+                                self.topic,
+                                postprocess_config,
+                                boundary_config,
+                            )
+
+                            try:
+                                print("=====calling api===")
+                                response = requests.post(
+                                    self.postprocess_api, json=data_packet, timeout=5
                                 )
 
-                                try:
-                                    print("=====calling api===")
-                                    response = requests.post(
-                                        self.postprocess_api, json=data_packet, timeout=5
-                                    )
-
-                                    print(f"camera id {self.camera_id} usecase_id {i} ")
-                                    print(response.text, "8007")
-                                except Exception as ex:
-                                    print("Timeout on 8007")
-                            
+                                print(f"camera id {self.camera_id} usecase_id {i} ")
+                                print(response.text, "8007")
+                            except Exception as ex:
+                                print("Timeout on 8007",ex)
+                        
 
                         
 
