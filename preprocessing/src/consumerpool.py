@@ -98,10 +98,13 @@ class PoolConsumer:
         # statusdict={}
         executor = ProcessPoolExecutor(30)
         while True:
-            scheduledata = json.loads(self.r.get("scheduling"))
-            camdata = json.loads(self.r.get("preprocess"))
-            postprocessconfig = json.loads(self.r.get("postprocess"))
-            boundaryconfig = json.loads(self.r.get("boundary"))
+            try:
+                scheduledata = json.loads(self.r.get("scheduling"))
+                camdata = json.loads(self.r.get("preprocess"))
+                postprocessconfig = json.loads(self.r.get("postprocess"))
+                boundaryconfig = json.loads(self.r.get("boundary"))
+            except:
+                continue
             # print("*********",scheduledata)
             for ki in postprocessconfig:
                 postprocess_smd[str(ki)] = postprocessconfig[ki]
