@@ -26,6 +26,7 @@ class PersistSchedule:
         returns:
             scheduledata (list): detail  data of requested query
         """
+        scheduledata = []
         cameraconfdata = []
         try:
             if query is None:
@@ -36,7 +37,7 @@ class PersistSchedule:
                 # sts.get(self.url, json=data, timeout=50)
             # print(resposnse)
             # print(resposnse.json())
-            scheduledata = None
+            scheduledata = []
             if response_schedule.status_code == 200:
                 scheduledata = response_schedule.json()["data"]
         except Exception as ex:
