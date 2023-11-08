@@ -170,7 +170,10 @@ class Scheduler:
         """
         count = 0
         while True:
-            data = json.loads(self.r.get("scheduling"))
+            try:
+                data = json.loads(self.r.get("scheduling"))
+            except:
+                continue
             print("&&&&&&&&")
             print(data)
             for dt in data:
