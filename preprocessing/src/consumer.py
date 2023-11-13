@@ -122,6 +122,8 @@ class RawImageConsumer:
         metadata,
         topic_name,
         postprocess,
+        split_row,
+        split_col,
         boundary=None,
     ):
         """
@@ -153,6 +155,7 @@ class RawImageConsumer:
         metadata["pipeline_inform"]["schedule_id"] = schedule_id
         metadata["pipeline_inform"]["camera_group_id"] = camera_group_id
         print("======packet done")
+        postprocess["split_image"]={"split_row":split_row,"split_col":split_col}
 
         return {
             "image": image_string,
@@ -177,43 +180,40 @@ class RawImageConsumer:
         self.check = True
 
         self.log.info(f"Starting Message Parsing {self.camera_id} for {self.topic}")
-        # while True:
-        #     print(self.consumer)
-        print("api=======>",self.postprocess_api)
-        print("=====Consumer Running=====")
-        print(self.consumer)
+        
         for message in self.consumer:
-            print("====Frame received===")
+            # print("====Frame received===")
             if self.camera_id in list(preprocess_smd.keys()):
                 data = preprocess_smd[str(self.camera_id)]
                 # print("====data===",data)
                 usecase = []
                 usecase = list(data.keys())
-                print("********usecase for camera*******", self.camera_id)
-                print(usecase)
+                print("********usecase for camera*******", self.camera_id,usecase)
+                
                 
                 self.previous_time = datetime.now()
                 raw_data, imgtime, image = self.messageParser(message)
                 fetchtime = (datetime.now() - imgtime).total_seconds()
-                print(f"Fetch time {self.camera_id} ", fetchtime)
-                self.log.info(f"Fetch Time for {self.camera_id} {fetchtime}")
-                # time.sleep(0.0001)
-                # yield "abc"
+                print(f"Fetch time {self.camera_id} is", fetchtime)
+                self.log.info(f"Fetch Time for {self.camera_id} is {fetchtime}")
                 
                 for i in usecase:
-                    print("=======usecase========", i)
-                    #if preprocess_smd[self.camera_id][str(i)]["current_state"]:
-                    print(preprocess_smd[self.camera_id][str(i)])
                     timezone=float(preprocess_smd[self.camera_id][str(i)]["timezone_offset"])
-                    print("timezone===>",timezone)
+                    
+                    split_row=1
+                    split_col=1
+
                     if str(i) in list(data.keys()):
                         if data[str(i)]["preprocess_id"] is not None:
                             pp = PreProcess()
 
-                            # print(self.preprocess_smd)
                             preprocess_config_data = preprocess_smd[str(self.camera_id)][str(i)]
+                            if preprocess_config_data["split_process_row"] is not None and preprocess_config_data["split_process_row"]>0:
+                                split_row=preprocess_config_data["split_process_row"]
+                            if preprocess_config_data["split_process_column"] is not None and preprocess_config_data["split_process_column"]>0:
+                                split_col=preprocess_config_data["split_process_column"]
+
                             image = np.array(pp.process(image, preprocess_config_data))
-                        print("kys====>", postprocess_smd.keys())
                         if str(i) in list(postprocess_smd.keys()):
                             postprocess_config = postprocess_smd[str(i)]
                             try:
@@ -221,7 +221,7 @@ class RawImageConsumer:
                             except KeyError as ex:
                                 boundary_config = None
 
-                            print("===postprocess for vamera id===", self.camera_id, i)
+                            #print("===postprocess for vamera id===", self.camera_id, i)
 
                             data_packet = self.create_packet(
                                 timezone,
@@ -234,6 +234,8 @@ class RawImageConsumer:
                                 raw_data,
                                 self.topic,
                                 postprocess_config,
+                                split_row,
+                                split_col,
                                 boundary_config,
                             )
 
@@ -242,11 +244,11 @@ class RawImageConsumer:
                                 response = requests.post(
                                     self.postprocess_api, json=data_packet, timeout=5
                                 )
-
-                                print(f"camera id {self.camera_id} usecase_id {i} ")
-                                print(response.text, "8007")
+                                self.log.info(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
+                                print(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
                             except Exception as ex:
-                                print("Timeout on 8007",ex)
+                                self.log.info(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
+                                print(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
                         
 
                         
@@ -257,5 +259,4 @@ class RawImageConsumer:
     def killTopic(self):
         self.kill = True
 
-    # def preProcessData(self):
-    #     pass
+   

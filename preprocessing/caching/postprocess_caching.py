@@ -95,6 +95,7 @@ class PersistPostProcessConfig:
                 postconfigdata[dt["usecase_id"]]["image_height"] = dt["image_height"]
                 postconfigdata[dt["usecase_id"]]["image_width"] = dt["image_width"]
                 postconfigdata[dt["usecase_id"]]["legend"] = dt["legend"]
+                postconfigdata[dt["usecase_id"]]["orientation"] = dt["orientation"]
                 postconfigdata[dt["usecase_id"]]["postprocess_name"] = dt["postprocess_name"]
                 postconfigdata[dt["usecase_id"]]["usecase_name"] = dt["usecase_name"]
                 postconfigdata[dt["usecase_id"]]["usecase_description"] = dt["usecase_description"]

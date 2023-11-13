@@ -52,7 +52,7 @@ class PoolConsumer:
         self.r = redis.Redis(connection_pool=pool)
         self.dict3 = {}
         self.postprocss_api=postprocess_api
-        self.log = logger
+        self.logger = logger
         # self.smd = SharedMemoryDict(name='tokens', size=1024)
 
     def startFuture(self, obj):
@@ -83,6 +83,9 @@ class PoolConsumer:
             # print("=====>scheule===>",camdata[i])
             camdata[i]["current_state"] = scheduledata[str(schedule_id)]["current_state"]
         return camdata
+    def remove_topic(self, camlist, futuredict):
+        camlist = list(map(lambda x: int(x), camlist))
+        return list(set(futuredict.keys()) - set(camlist))
 
     def checkState(self):
         """
@@ -94,9 +97,8 @@ class PoolConsumer:
         manager = Manager()
         statusdict = manager.dict()
         futuredict = {}
-        # queudict={}
-        # statusdict={}
-        executor = ProcessPoolExecutor(30)
+        
+        executor = ProcessPoolExecutor(100)
         while True:
             try:
                 scheduledata = json.loads(self.r.get("scheduling"))
@@ -105,71 +107,60 @@ class PoolConsumer:
                 boundaryconfig = json.loads(self.r.get("boundary"))
             except:
                 continue
-            # print("*********",scheduledata)
             for ki in postprocessconfig:
                 postprocess_smd[str(ki)] = postprocessconfig[ki]
             for ki in boundaryconfig:
                 boundary_smd[str(ki)] = boundaryconfig[ki]
-            # print("===========+++++++=======")
-            # print(postprocess_smd)
+            camtoremove = self.remove_topic(camdata.keys(), futuredict)
+            self.logger.info(f" These Cam Have been Removed From Group {camtoremove}")
+            
+            for cam in camtoremove:
+                try:
+                    futuredict[cam].cancel()
+                except Exception as ex:
+                    self.logger.info("Exception while removing cam ",ex)
+                    print("Exception while removing cam ",ex)
+
+                del futuredict[cam]
+                del statusdict[cam]
+                self.logger.info(f"Killing camera {cam}")
+
             for cam in camdata.keys():
                 usecasekeys = list(camdata[cam].keys())
-                # print("#####",camdata[cam])
-                # print(camdata)
-                # self.usecaseids=list(self.cachedata[str(cameraid)].keys())
-                # topic = camdata[cam][str(usecasekeys[0])]["topic_name"]
+                
                 tempcam = camdata[cam][usecasekeys[0]]
                 cam_id = tempcam["camera_id"]
                 camera_group_id = tempcam["camera_group_id"]
-                if cam_id < 50:
-                    if cam_id not in statusdict:
+                #if cam_id < 50:
+                if cam_id not in statusdict:
+                    preproceesdata = self.getScheduleState(scheduledata, camdata[cam])
+                    
+                    preprocess_smd[str(cam_id)] = preproceesdata
+                    obj = RawImageConsumer(self.kafkahost, cam_id, self.logger)
+                    statusdict[cam_id] = obj
+                    
+                    future1 = executor.submit(testFuture, obj, self.postprocss_api)
+                    # executor.submit(,"dddf")
+                    future1.add_done_callback(testcallbackFuture)
+                    # listapp.append(future1)
+                    futuredict[cam_id] = future1
+                    self.logger.info(f"Starting Conusmer for {cam_id}")
+
+                else:
+                    preproceesdata = self.getScheduleState(scheduledata, camdata[cam])
+                    preprocess_smd[str(cam_id)] = preproceesdata
+                    self.logger.info(f"Updating Data for {cam_id}", preproceesdata)
+                    
+                    if not futuredict[cam_id].running():
+                        futuredict[cam_id].cancel()
                         preproceesdata = self.getScheduleState(scheduledata, camdata[cam])
-                        # print("*********",preproceesdata)
                         preprocess_smd[str(cam_id)] = preproceesdata
-                        obj = RawImageConsumer(self.kafkahost, cam_id, self.log)
+                        obj = RawImageConsumer(self.kafkahost, cam_id, self.logger)
                         statusdict[cam_id] = obj
-                        # queudict[cam_id]=Queue()
-                        print("Starting consumer====", cam_id)
+
                         future1 = executor.submit(testFuture, obj, self.postprocss_api)
-                        # executor.submit(,"dddf")
-                        future1.add_done_callback(testcallbackFuture)
-                        # listapp.append(future1)
                         futuredict[cam_id] = future1
-                        self.log.info(f"Starting Conusmer for {cam_id}")
-
-                    else:
-                        # statusdict[cam_id].update("abc")
-                        # print("=====else===",cam_id)
-                        # print(futuredict[cam_id].done())
-                        # print(futuredict[cam_id].running())
-                        # #print("=====else===",cam_id)
-                        preproceesdata = self.getScheduleState(scheduledata, camdata[cam])
-                        preprocess_smd[str(cam_id)] = preproceesdata
-                        self.log.info(f"Updating Data for {cam_id}", preproceesdata)
-                        # print(preprocess_smd)
-                        # print("========Updating by Update=====")
-                        # print(preprocess_smd[str(cam_id)])
-                        # executor.submit(statusdict[cam_id].update,"updated by parent")
-                        # print("*"*100)
-                        # queudict[cam_id].put(preprocess_smd)
-
-                        if not futuredict[cam_id].running():
-                            futuredict[cam_id].cancel()
-                            preproceesdata = self.getScheduleState(scheduledata, camdata[cam])
-                            preprocess_smd[str(cam_id)] = preproceesdata
-                            # preprocess_smd[cam_id]=camdata[cam]
-                            # print(preprocess_smd)
-                            obj = RawImageConsumer(self.kafkahost, cam_id, self.log)
-                            statusdict[cam_id] = obj
-
-                            future1 = executor.submit(testFuture, obj, self.postprocss_api)
-                            # listapp.append(future1)
-                            futuredict[cam_id] = future1
-                            self.log.info(f"Starting New Conusmer for {cam_id}")
-                        # else:
-                        # print("Updating===>",cam_id)
-
-            #         time.sleep(3)
-            # # print(statusdict)
+                        self.logger.info(f"Starting New Conusmer for {cam_id}")
+                    
             time.sleep(2)
-            # print("preprocess_smd===>",postprocess_smd)
+            
