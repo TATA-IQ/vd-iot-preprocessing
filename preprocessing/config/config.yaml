@@ -1,27 +1,22 @@
 ---
 apis:
-  camera_group: "http://10.0.153.141:8000/getCameraGroup"
-  preprocess_config: "http://10.0.153.141:8000/getCameraGroup"
-  schedule_config: "http://10.0.153.141:8000/getCameraConfig"
-  postprocess_config: "http://10.0.153.141:8000/getpostprocess"
-  usecase_urls: "http://10.0.153.141:8000/getusecase"
-  classes: "http://10.0.153.141:8000/getclasses"
-  computation: "http://10.0.153.141:8000/getcomputation"
-  incidents: "http://10.0.153.141:8000/getincidents"
-  boundary_config: "http://10.0.153.141:8000/getboundary"
-  schedule_master: "http://10.0.153.141:8000/getScheduleMaster"
-  preprocess_config: "http://10.0.153.141:8000/getPreprocessConfig"
-
-postprocessing:
-  api: "http://10.0.153.141:8007/postprocess"
+  camera_group: "http://172.16.0.204:8000/getCameraGroup"
+  schedule_config: "http://172.16.0.204:8000/getCameraConfig"
+  postprocess_config: "http://172.16.0.204:8000/getpostprocess"
+  usecase_urls: "http://172.16.0.204:8000/getusecase"
+  classes: "http://172.16.0.204:8000/getclasses"
+  computation: "http://172.16.0.204:8000/getcomputation"
+  incidents: "http://172.16.0.204:8000/getincidents"
+  boundary_config: "http://172.16.0.204:8000/getboundary"
+  schedule_master: "http://172.16.0.204:8000/getScheduleMaster"
+  preprocess_config: "http://172.16.0.204:8000/getPreprocessConfig"
 
 kafka:
-  - 172.31.26.109:9092
+  - 172.16.0.175:9092
+  - 172.16.0.171:9092
+  - 172.16.0.174:9092
 
-event_topic:
-  - app_events
-
-readConfig: False
+readConfig: true
 config:
   customer:
     - 1
