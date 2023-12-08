@@ -24,6 +24,7 @@ class Caching:
     def __init__(
         self,
         api: dict,
+        redisconf:dict,
         camera_group: list = None,
         customer: list = None,
         location: list = None,
@@ -39,7 +40,7 @@ class Caching:
             subsite (list): list of subsite id, by default is None
             camera_group (list): list of camera group, by default is None
         """
-        pool = redis.ConnectionPool(host="localhost", port=6379, db=0)
+        pool = redis.ConnectionPool(host=redisconf["host"], port=redisconf["port"], db=0)
         self.r = redis.Redis(connection_pool=pool)
         print("customer", customer)
         print("location", location)
@@ -150,8 +151,11 @@ class Caching:
         print("&&&&&&&&&&&&&&&", self.camera_group)
 
         jsonreq = {"camera_group_id": self.camera_group}
+        print("jsonreq===>",jsonreq)
         tempschedule, _ = self.schedule.persist_data(jsonreq)
+        print(tempschedule)
         tempdict = self.preprocs.persist_data(jsonreq)
+        
 
         preprocessconfig = tempdict
         secheduleconfig = tempschedule
@@ -162,16 +166,16 @@ class Caching:
 
         postprocessconfig = self.postprocess.persist_data()
         boundaryconfig = self.boundary.persist_data()
-        self.r.set("postprocess", json.dumps(postprocessconfig))
-        print("*****====>", len(preprocessconfig))
+        # self.r.set("postprocess", json.dumps(postprocessconfig))
+        print("*****====>",secheduleconfig)
         self.r.set("scheduling", json.dumps(secheduleconfig))
-        print("====boundary===")
-        print(boundaryconfig)
+        
 
-        self.r.set("preprocess", json.dumps(preprocessconfig))
+        # self.r.set("preprocess", json.dumps(preprocessconfig))
 
-        self.r.set("boundary", json.dumps(boundaryconfig))
-        print(preprocessconfig.keys())
+        # self.r.set("boundary", json.dumps(boundaryconfig))
+        
+        print("======data stored in cache=====")
 
     def checkEvents(self,kafka,topic):
         """

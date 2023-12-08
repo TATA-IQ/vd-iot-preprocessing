@@ -43,12 +43,12 @@ def testFuture(obj,postprocss_api):
 
 
 class PoolConsumer:
-    def __init__(self, kafkahost, postprocess_api,logger):
+    def __init__(self, kafkahost, redis_server, postprocess_api,logger):
         """
         Initialize the  Camera Group and connect with redis to take the recent configuration
         """
         self.kafkahost = kafkahost
-        pool = redis.ConnectionPool(host="localhost", port=6379, db=0)
+        pool = redis.ConnectionPool(host=redis_server["host"], port=redis_server["port"], db=0)
         self.r = redis.Redis(connection_pool=pool)
         self.dict3 = {}
         self.postprocss_api=postprocess_api
@@ -98,14 +98,18 @@ class PoolConsumer:
         statusdict = manager.dict()
         futuredict = {}
         
-        executor = ProcessPoolExecutor(100)
+        executor = ProcessPoolExecutor(10)
+        print("=======starting preprocess=====")
         while True:
             try:
+                print(self.r.get("scheduling"))
                 scheduledata = json.loads(self.r.get("scheduling"))
+
                 camdata = json.loads(self.r.get("preprocess"))
                 postprocessconfig = json.loads(self.r.get("postprocess"))
                 boundaryconfig = json.loads(self.r.get("boundary"))
-            except:
+            except Exception as ex:
+                print("=====exception====",ex)
                 continue
             for ki in postprocessconfig:
                 postprocess_smd[str(ki)] = postprocessconfig[ki]
