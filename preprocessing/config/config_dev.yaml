@@ -1,0 +1,40 @@
+---
+apis:
+  camera_group: "http://172.16.0.204:8000/getCameraGroup"
+  schedule_config: "http://172.16.0.204:8000/getCameraConfig"
+  postprocess_config: "http://172.16.0.204:8000/getpostprocess"
+  usecase_urls: "http://172.16.0.204:8000/getusecase"
+  classes: "http://172.16.0.204:8000/getclasses"
+  computation: "http://172.16.0.204:8000/getcomputation"
+  incidents: "http://172.16.0.204:8000/getincidents"
+  boundary_config: "http://172.16.0.204:8000/getboundary"
+  schedule_master: "http://172.16.0.204:8000/getScheduleMaster"
+  preprocess_config: "http://172.16.0.204:8000/getPreprocessConfig"
+
+kafka:
+  - 172.16.0.175:9092
+  - 172.16.0.171:9092
+  - 172.16.0.174:9092
+
+readConfig: true
+config:
+  customer:
+    - 1
+    - 2
+    - 3
+  zone:
+    - 1
+    - 2
+    - 3
+  subsite:
+    - 1
+    - 2
+    - 3
+  location:
+    - 1
+    - 2 
+    - 3
+  group:
+    - 1
+    - 2
+    - 3
