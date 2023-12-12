@@ -18,7 +18,7 @@ def get_service_address(consul_client,service_name,env):
             services=consul_client.catalog.service(service_name)[1]
             print(services)
             for i in services:
-                if env == i["ServiceID"].split("-")[:-1]:
+                if env == i["ServiceID"].split("-")[-1]:
                     return i
         except:
             time.sleep(10)
@@ -129,7 +129,7 @@ if __name__ == "__main__":
         del postprocess_smd
         del boundary_smd
         conf = Config.yamlconfig("config/config.yaml")
-        dbconf,preprocessconf,kafkaconf,postprocessapi=get_confdata(conf)
+        dbconf,preprocessconf,kafkaconf,postprocessapi=get_confdata(conf[0]["consul"])
         redis_server=preprocessconf["redis"]
         postprocess_api=postprocessapi
         # print(data[0]["kafka"])
