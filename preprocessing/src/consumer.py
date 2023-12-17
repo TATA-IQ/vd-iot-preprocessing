@@ -198,58 +198,59 @@ class RawImageConsumer:
                 self.log.info(f"Fetch Time for {self.camera_id} is {fetchtime}")
                 
                 for i in usecase:
-                    timezone=float(preprocess_smd[self.camera_id][str(i)]["timezone_offset"])
-                    
-                    split_row=1
-                    split_col=1
-
-                    if str(i) in list(data.keys()):
-                        if data[str(i)]["preprocess_id"] is not None:
-                            pp = PreProcess()
-
-                            preprocess_config_data = preprocess_smd[str(self.camera_id)][str(i)]
-                            if preprocess_config_data["split_process_row"] is not None and preprocess_config_data["split_process_row"]>0:
-                                split_row=preprocess_config_data["split_process_row"]
-                            if preprocess_config_data["split_process_column"] is not None and preprocess_config_data["split_process_column"]>0:
-                                split_col=preprocess_config_data["split_process_column"]
-
-                            image = np.array(pp.process(image, preprocess_config_data))
-                        if str(i) in list(postprocess_smd.keys()):
-                            postprocess_config = postprocess_smd[str(i)]
-                            try:
-                                boundary_config = boundary_smd[str(self.camera_id)][str(i)]
-                            except KeyError as ex:
-                                boundary_config = None
-
-                            #print("===postprocess for vamera id===", self.camera_id, i)
-
-                            data_packet = self.create_packet(
-                                timezone,
-                                data[str(i)]["preprocess_id"],
-                                "",
-                                data[str(i)]["camera_group_id"],
-                                i,
-                                data[str(i)]["usecase_name"],
-                                image,
-                                raw_data,
-                                self.topic,
-                                postprocess_config,
-                                split_row,
-                                split_col,
-                                boundary_config,
-                            )
-
-                            try:
-                                print("=====calling api===")
-                                response = requests.post(
-                                    self.postprocess_api, json=data_packet, timeout=5
-                                )
-                                self.log.info(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
-                                print(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
-                            except Exception as ex:
-                                self.log.info(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
-                                print(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
+                    if preprocess_smd[self.camera_id][str(i)]["current_state"]:
+                        timezone=float(preprocess_smd[self.camera_id][str(i)]["timezone_offset"])
                         
+                        split_row=1
+                        split_col=1
+
+                        if str(i) in list(data.keys()):
+                            if data[str(i)]["preprocess_id"] is not None:
+                                pp = PreProcess()
+
+                                preprocess_config_data = preprocess_smd[str(self.camera_id)][str(i)]
+                                if preprocess_config_data["split_process_row"] is not None and preprocess_config_data["split_process_row"]>0:
+                                    split_row=preprocess_config_data["split_process_row"]
+                                if preprocess_config_data["split_process_column"] is not None and preprocess_config_data["split_process_column"]>0:
+                                    split_col=preprocess_config_data["split_process_column"]
+
+                                image = np.array(pp.process(image, preprocess_config_data))
+                            if str(i) in list(postprocess_smd.keys()):
+                                postprocess_config = postprocess_smd[str(i)]
+                                try:
+                                    boundary_config = boundary_smd[str(self.camera_id)][str(i)]
+                                except KeyError as ex:
+                                    boundary_config = None
+
+                                #print("===postprocess for vamera id===", self.camera_id, i)
+
+                                data_packet = self.create_packet(
+                                    timezone,
+                                    data[str(i)]["preprocess_id"],
+                                    "",
+                                    data[str(i)]["camera_group_id"],
+                                    i,
+                                    data[str(i)]["usecase_name"],
+                                    image,
+                                    raw_data,
+                                    self.topic,
+                                    postprocess_config,
+                                    split_row,
+                                    split_col,
+                                    boundary_config,
+                                )
+
+                                try:
+                                    print("=====calling api===")
+                                    response = requests.post(
+                                        self.postprocess_api, json=data_packet, timeout=5
+                                    )
+                                    self.log.info(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
+                                    print(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
+                                except Exception as ex:
+                                    self.log.info(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
+                                    print(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
+                            
 
                         
 

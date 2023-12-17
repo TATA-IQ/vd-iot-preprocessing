@@ -152,7 +152,8 @@ class Caching:
 
         jsonreq = {"camera_group_id": self.camera_group}
         print("jsonreq===>",jsonreq)
-        tempschedule, _ = self.schedule.persist_data(jsonreq)
+        #tempschedule, _ = self.schedule.persist_data(jsonreq)
+        tempschedule, _ = self.schedule.persist_data()
         print(tempschedule)
         tempdict = self.preprocs.persist_data(jsonreq)
         
@@ -166,14 +167,14 @@ class Caching:
 
         postprocessconfig = self.postprocess.persist_data()
         boundaryconfig = self.boundary.persist_data()
-        # self.r.set("postprocess", json.dumps(postprocessconfig))
+        self.r.set("postprocess", json.dumps(postprocessconfig))
         print("*****====>",secheduleconfig)
         self.r.set("scheduling", json.dumps(secheduleconfig))
         
 
-        # self.r.set("preprocess", json.dumps(preprocessconfig))
+        self.r.set("preprocess", json.dumps(preprocessconfig))
 
-        # self.r.set("boundary", json.dumps(boundaryconfig))
+        self.r.set("boundary", json.dumps(boundaryconfig))
         
         print("======data stored in cache=====")
 
