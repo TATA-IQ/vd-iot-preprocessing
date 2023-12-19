@@ -15,6 +15,8 @@ from kafka import KafkaConsumer
 from PIL import Image
 from preprocess.preprocessing import PreProcess
 from shared_memory_dict import SharedMemoryDict
+from console_logging.console import Console
+console=Console()
 
 # os.environ["SHARED_MEMORY_USE_LOCK"]="1"
 postprocess_smd = SharedMemoryDict(name="postprocess", size=10000000)
@@ -144,7 +146,6 @@ class RawImageConsumer:
             dict: it contains topic, image, boundary, postprocess configand metadata of camera
 
         """
-        print("===create packet called====")
         image_string = cv2.imencode(".jpg", image)[1].tobytes().decode("ISO-8859-1")
         metadata["usecase"] = {}
         metadata["usecase"]["usecase_id"] = int(usecase_id)
@@ -154,7 +155,7 @@ class RawImageConsumer:
         metadata["pipeline_inform"]["preprocess_id"] = preprocess_id
         metadata["pipeline_inform"]["schedule_id"] = schedule_id
         metadata["pipeline_inform"]["camera_group_id"] = camera_group_id
-        print("======packet done")
+        
         postprocess["split_image"]={"split_row":split_row,"split_col":split_col}
 
         return {
@@ -167,6 +168,7 @@ class RawImageConsumer:
     def multiple_consumer(self):
         thread_executor=ThreadPoolExecutor(max_workers=4)
         thread_executor_list=[]
+        console.info("Starting Message Parsing")
         for i in range(0,4):
             f1=thread_executor.submit(self.runConsumer)
             thread_executor_list.append(f1)
@@ -176,26 +178,28 @@ class RawImageConsumer:
         """
         Run consumer and fetch data from kafka topics
         """
-        print(f"=={self.camera_id} Message Parse Connected for Topic {self.topic}====")
+        
+        console.info(f"{self.camera_id} Message Parse Connected for Topic {self.topic}")
         self.check = True
 
         self.log.info(f"Starting Message Parsing {self.camera_id} for {self.topic}")
         
         for message in self.consumer:
-            # print("====Frame received===")
+            print("====Frame received===")
             if self.camera_id in list(preprocess_smd.keys()):
                 data = preprocess_smd[str(self.camera_id)]
                 # print("====data===",data)
                 usecase = []
                 usecase = list(data.keys())
-                print("********usecase for camera*******", self.camera_id,usecase)
+                
                 
                 
                 self.previous_time = datetime.now()
                 raw_data, imgtime, image = self.messageParser(message)
                 fetchtime = (datetime.now() - imgtime).total_seconds()
-                print(f"Fetch time {self.camera_id} is", fetchtime)
+                
                 self.log.info(f"Fetch Time for {self.camera_id} is {fetchtime}")
+                console.info(f"Fetch time {self.camera_id} is {fetchtime}")
                 
                 for i in usecase:
                     if preprocess_smd[self.camera_id][str(i)]["current_state"]:
@@ -222,7 +226,7 @@ class RawImageConsumer:
                                 except KeyError as ex:
                                     boundary_config = None
 
-                                #print("===postprocess for vamera id===", self.camera_id, i)
+                                
 
                                 data_packet = self.create_packet(
                                     timezone,
@@ -241,15 +245,15 @@ class RawImageConsumer:
                                 )
 
                                 try:
-                                    print("=====calling api===")
+                                    
                                     response = requests.post(
                                         self.postprocess_api, json=data_packet, timeout=5
                                     )
                                     self.log.info(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
-                                    print(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
+                                    console.success(f"Postprocessing called for cameraid {self.camera_id} and usecase_id {i}")
                                 except Exception as ex:
                                     self.log.info(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
-                                    print(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
+                                    console.error(f"Exception called for cameraid {self.camera_id} and usecase_id {i} exception {ex}")
                             
 
                         

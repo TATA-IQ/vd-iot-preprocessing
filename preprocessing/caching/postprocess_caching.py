@@ -23,7 +23,7 @@ class PersistPostProcessConfig:
         """
         modeldata = self.api_call(self.apis["classes"], data={"usecase_id": usecase_id})
         # modeldata = classresponse.json()["data"]
-        # print(modeldata)
+        
         return modeldata
 
     def computation_data(self, usecase_id):
@@ -36,7 +36,7 @@ class PersistPostProcessConfig:
         """
         computationdata = self.api_call(self.apis["computation"], data={"usecase_id": usecase_id})
         # computationdata=computationresponse.json()["data"]
-        # print(computationdata)
+        
         return computationdata
 
     def get_usecase(self):
@@ -59,19 +59,17 @@ class PersistPostProcessConfig:
         """
         cameraconfdata = []
         responsedata = []
-        print("*******data", data)
+        
         try:
             if data is None:
-                print("None")
+                
                 resposnse = requests.get(url, json={}, timeout=50)
             else:
                 resposnse = requests.get(url, json=data, timeout=50)
-            # print(resposnse)
-            print(resposnse.json())
-            print(url, data)
+            
             if resposnse.status_code == 200:
                 responsedata = resposnse.json()["data"]
-                print(responsedata)
+                
         except Exception as ex:
             print("Exception while calling postprocessing api")
         return responsedata
@@ -89,7 +87,7 @@ class PersistPostProcessConfig:
             postconf_data = self.api_call(self.apis["postprocess_config"], {"usecase_id": usecaseid})
         # postconf_data = pp.api_call("http://172.16.0.204:8000/getpostprocess",{"usecase_id":usecaseid})
         for dt in postconf_data:
-            print("========post config=====", dt)
+            
             if dt["usecase_id"] not in postconfigdata.keys():
                 postconfigdata[dt["usecase_id"]] = {}
                 postconfigdata[dt["usecase_id"]]["image_height"] = dt["image_height"]
@@ -102,8 +100,7 @@ class PersistPostProcessConfig:
                 postconfigdata[dt["usecase_id"]]["usecase_template_id"] = dt["usecase_template_id"]
                 postconfigdata[dt["usecase_id"]]["incidents"] = {}
                 postconfigdata[dt["usecase_id"]]["steps"] = {}
-                print("=======step no====")
-                print(dt["step_no"])
+                
                 postconfigdata[dt["usecase_id"]]["steps"][dt["step_no"]] = {}
                 postconfigdata[dt["usecase_id"]]["steps"][dt["step_no"]]["step_name"] = dt["step_name"]
                 postconfigdata[dt["usecase_id"]]["steps"][dt["step_no"]]["step_type"] = dt["step_type"]
@@ -130,12 +127,9 @@ class PersistPostProcessConfig:
         incidentjson = self.api_call(self.apis["incidents"], data={"usecase_id": usecase_id})
         # incidentjson = incidentresponse.json()["data"]
         for inc in incidentjson:
-            print("=====inc======")
-            print("=====uc======",usecase_id)
-            print(inc)
-            print(postprocess_data)
+            
             if int(inc["incident_id"]) not in postprocess_data["incidents"]:
-                print("=====exist======")
+                
                 postprocess_data["incidents"][inc["incident_id"]] = {}
                 postprocess_data["incidents"][inc["incident_id"]]["incident_id"] = inc["incident_id"]
                 postprocess_data["incidents"][inc["incident_id"]]["incident_name"] = inc["incident_name"]
@@ -144,10 +138,10 @@ class PersistPostProcessConfig:
                 postprocess_data["incidents"][inc["incident_id"]]["incident_type_name"] = inc["incident_type_name"]
                 
                 if "class_id" in postprocess_data["incidents"][inc["incident_id"]] and inc["class_id"] in postprocess_data["incidents"][inc["incident_id"]]["class_id"]:
-                    print("======class id exist=====")
+                    
                     postprocess_data["incidents"][inc["incident_id"]]["class_id"].append(inc["class_id"])
                 else:
-                    print("class id not exist")
+                    
                     postprocess_data["incidents"][inc["incident_id"]]["class_id"] = [inc["class_id"]]
                 
                 if "class_name" in postprocess_data["incidents"][inc["incident_id"]] and  inc["class_name"] in postprocess_data["incidents"][inc["incident_id"]]["class_name"]:
@@ -156,23 +150,17 @@ class PersistPostProcessConfig:
                 else:
                     postprocess_data["incidents"][inc["incident_id"]]["class_name"]=[inc["class_name"]]
             else:
-                print("=====exist====")
-                print("++++++uc+++++",usecase_id,inc["incident_id"])
-                print(postprocess_data["incidents"])
-                print(postprocess_data["incidents"][inc["incident_id"]])
+                
                 if "class_id" in postprocess_data["incidents"][inc["incident_id"]] and inc["class_id"] not in postprocess_data["incidents"][inc["incident_id"]]["class_id"]:
-                    print("====class id exist===")
+                    
                     postprocess_data["incidents"][inc["incident_id"]]["class_id"].append(inc["class_id"])
-                # else:
-                #     print("class id not exist***")
-                #     postprocess_data["incidents"][inc["incident_id"]]["class_id"] = [inc["class_id"]]
+                
                 
                 if "class_name" in postprocess_data["incidents"][inc["incident_id"]] and  inc["class_name"] not  in postprocess_data["incidents"][inc["incident_id"]]["class_name"]:
 
                     postprocess_data["incidents"][inc["incident_id"]]["class_name"].append(inc["class_name"])
         
-        print("&&&&&&uc&&&&&",usecase_id)
-        print(postprocess_data["incidents"])
+        
 
         return postprocess_data
 
@@ -253,13 +241,10 @@ class PersistPostProcessConfig:
         finaldict = {}
         postdata_master = self.postprocess_master()
         for usecase_id, postdata in postdata_master.items():
-            print("============Get========")
-            print(postdata)
+            
             postdata_inc = self.incident_postprocess(usecase_id, postdata)
             postdata_model = self.step_model(usecase_id, postdata_inc)
             postdata_compute = self.step_computation(usecase_id, postdata_model)
-            print("=" * 30)
-            print(postdata_compute)
-            print("#" * 30)
+            
             finaldict[usecase_id] = postdata_compute
         return finaldict

@@ -12,6 +12,8 @@ from caching.postprocess_caching import PersistPostProcessConfig
 from caching.preprocess_caching import PersistPreprocessConfig
 from caching.schedule_caching import PersistSchedule
 from kafka import KafkaConsumer
+from console_logging.console import Console
+console=Console()
 
 
 class Caching:
@@ -87,7 +89,7 @@ class Caching:
             try:
                 camgroup = r.json()["data"]
             except Exception as ex:
-                print("Camgroup exception: ", ex)
+                console.error(f"Camgroup exception: {0}".format(ex))
                 return []
 
         if customer is not None:
@@ -96,34 +98,34 @@ class Caching:
                 camgroup = r.json()["data"]
                 # print("===customer==",camgroup)
             except Exception as ex:
-                print("Exceptin while fetching customer ", ex)
+                console.error(f"Exceptin while fetching customer {0}".format(ex))
                 pass
         if location is not None:
             r = requests.get(self.api["camera_group"], json={"location_id": location}, timeout=50)  # noqa: E501
             try:
                 if len(camgroup) > 0:
                     camgroup = camgroup + r.json()["data"]
-                    print("===location==", camgroup)
+                    
             except Exception as ex:
-                print("location data exception: ", ex)
+                console.error(f"Exceptin while fetching location {0}".format(ex))
                 pass
         if subsite is not None:
             r = requests.get(self.api["camera_group"], json={"subsite_id": subsite}, timeout=50)  # noqa: E501
             try:
                 if len(camgroup) > 0:
                     camgroup = camgroup + r.json()["data"]
-                    print("===subsite==", camgroup)
+                   
             except Exception as ex:
-                print("subsite data exception: ", ex)
+                console.error(f"Exceptin while fetching subsite {0}".format(ex))
                 pass
         if zone is not None:
             r = requests.get(self.api["camera_group"], json={"zone_id": zone}, timeout=50)  # noqa: E501
             try:
                 if len(camgroup) > 0:
                     camgroup = camgroup + r.json()["data"]
-                    print("===Zone Id==", camgroup)
+                    
             except Exception as ex:
-                print("Zone data exception: ", ex)
+                console.error(f"Exceptin while fetching zone {0}".format(ex))
                 pass
 
         return list(set(camgroup))
@@ -142,19 +144,17 @@ class Caching:
         else:
             self.camera_group = self.get_cam_group()
 
-        print("camera group---->", self.camera_group)
-        # persist_data, scheduledata = self.schedule.persist_data()
-        # self.r.set("scheduling", json.dumps(persist_data))
+        
         preprocessconfig = {}
         secheduleconfig = {}
         # for dt in scheduledata:
-        print("&&&&&&&&&&&&&&&", self.camera_group)
+        
 
         jsonreq = {"camera_group_id": self.camera_group}
-        print("jsonreq===>",jsonreq)
+        
         #tempschedule, _ = self.schedule.persist_data(jsonreq)
         tempschedule, _ = self.schedule.persist_data()
-        print(tempschedule)
+        
         tempdict = self.preprocs.persist_data(jsonreq)
         
 
@@ -168,7 +168,7 @@ class Caching:
         postprocessconfig = self.postprocess.persist_data()
         boundaryconfig = self.boundary.persist_data()
         self.r.set("postprocess", json.dumps(postprocessconfig))
-        print("*****====>",secheduleconfig)
+        
         self.r.set("scheduling", json.dumps(secheduleconfig))
         
 
@@ -176,14 +176,15 @@ class Caching:
 
         self.r.set("boundary", json.dumps(boundaryconfig))
         
-        print("======data stored in cache=====")
+        
 
     def checkEvents(self,kafka,topic):
         """
         Continuously checking the kafka for config update, once it gets the event it will update the cache
         """
         self.persist_data()
-        print(kafka, topic)
+        console.success("Caching started and updated")
+        
         consumer = KafkaConsumer(
             topic,
             bootstrap_servers=kafka,
@@ -195,35 +196,15 @@ class Caching:
             if message is None:
                 continue
             else:
-                print("=======message=====")
-                print(message)
+                
                 messae_item = message.value
                 items = [messae_item["item"]]
-                print(items)
+                
                 self.persist_data()
-                print(items)
-                print("updated at===>", datetime.now())
-                print(
-                    set(items).intersection(
-                        set(
-                            [
-                                "camera-group",
-                                "camera",
-                                "online-input",
-                                "schedule",
-                                "template",
-                                "boundary-group",
-                                "class",
-                                "computation",
-                                "incident",
-                                "model",
-                                "post-process",
-                                "pre-process",
-                                "usecase",
-                            ]
-                        )
-                    )
-                )
+                # print(items)
+                # print("updated at===>", datetime.now())
+                console.success(f"Preprocess cache updated at {0}".format(datetime.now()))
+                
                 # if len(set(items).intersection(set(["camera-group","camera","online-input","schedule",
                 # "template","boundary-group","class","computation","incident","model",
                 # "post-process","pre-process","usecase"])))>0:

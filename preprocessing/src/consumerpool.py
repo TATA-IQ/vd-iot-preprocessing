@@ -6,7 +6,8 @@ from multiprocessing import Manager, Queue
 import redis
 from shared_memory_dict import SharedMemoryDict
 from src.consumer import RawImageConsumer
-
+from console_logging.console import Console
+console=Console()
 # os.environ["SHARED_MEMORY_USE_LOCK"]="1"
 manager = Manager()
 queudict = {}
@@ -21,25 +22,26 @@ boundary_smd = SharedMemoryDict(name="boundary", size=10000000)
 
 
 def testcallbackFuture(future):
-    print("=======callback future====", future.exception())
+    console.error(" Future error cameragroup {0}".format(future.exception()))
 
 
 def testFuture(obj,postprocss_api):
-    print("====postprocess api====")
+    
     obj.connectConsumer(postprocss_api)
 
     
     # queudict[cam_id]=q
+    console.info("====Process submitted===")
 
     thread_executor_list=obj.multiple_consumer()
     while True:
         for i in thread_executor_list:
         
             if not i.running():
-                #print("----Need to break it----")
+                
                 break
 
-    # obj.callConsumer()
+    
 
 
 class PoolConsumer:
@@ -56,15 +58,9 @@ class PoolConsumer:
         # self.smd = SharedMemoryDict(name='tokens', size=1024)
 
     def startFuture(self, obj):
-        print("Future")
+        
         obj.connectConsumer()
-        # obj.startConsumer()
-        # obj.messageParse()
-
-        # while obj.isConnected():
-        #     a=a+1
-        # while True:
-        #     a=a+1
+        
         return 1
 
     def getScheduleState(self, scheduledata, camdata):
@@ -98,18 +94,19 @@ class PoolConsumer:
         statusdict = manager.dict()
         futuredict = {}
         
-        executor = ProcessPoolExecutor(10)
-        print("=======starting preprocess=====")
+        executor = ProcessPoolExecutor(100)
+        console.info("Starting preprocessing")
         while True:
             try:
-                print(self.r.get("scheduling"))
+                
                 scheduledata = json.loads(self.r.get("scheduling"))
 
                 camdata = json.loads(self.r.get("preprocess"))
                 postprocessconfig = json.loads(self.r.get("postprocess"))
                 boundaryconfig = json.loads(self.r.get("boundary"))
             except Exception as ex:
-                print("=====exception====",ex)
+                self.logger.error("Exception While loading cache {0}".format(ex))
+                console.error("Exception While loading cache {0}".format(ex))
                 continue
             for ki in postprocessconfig:
                 postprocess_smd[str(ki)] = postprocessconfig[ki]
@@ -123,11 +120,12 @@ class PoolConsumer:
                     futuredict[cam].cancel()
                 except Exception as ex:
                     self.logger.info("Exception while removing cam ",ex)
-                    print("Exception while removing cam ",ex)
+                    console.error(f"Exception while removing cam {ex}")
 
                 del futuredict[cam]
                 del statusdict[cam]
                 self.logger.info(f"Killing camera {cam}")
+                console.info(f"Killing camera {cam}")
 
             for cam in camdata.keys():
                 usecasekeys = list(camdata[cam].keys())
@@ -144,16 +142,16 @@ class PoolConsumer:
                     statusdict[cam_id] = obj
                     
                     future1 = executor.submit(testFuture, obj, self.postprocss_api)
-                    # executor.submit(,"dddf")
                     future1.add_done_callback(testcallbackFuture)
-                    # listapp.append(future1)
                     futuredict[cam_id] = future1
                     self.logger.info(f"Starting Conusmer for {cam_id}")
+                    console.info(f"Starting Conusmer for {cam_id}")
 
                 else:
                     preproceesdata = self.getScheduleState(scheduledata, camdata[cam])
                     preprocess_smd[str(cam_id)] = preproceesdata
-                    self.logger.info(f"Updating Data for {cam_id}", preproceesdata)
+                    self.logger.info(f"Updating Data for {cam_id}")
+                    # console.info(f"Updating Data for {cam_id}")
                     
                     if not futuredict[cam_id].running():
                         futuredict[cam_id].cancel()

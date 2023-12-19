@@ -2,6 +2,8 @@ from caching.rediscaching import Caching
 from src.parser import Config
 import requests
 import consul
+from console_logging.console import Console
+console=Console()
 
 path = "config/config.yaml"
 configdata = Config.yamlconfig(path)

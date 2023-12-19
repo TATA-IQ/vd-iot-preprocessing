@@ -29,13 +29,11 @@ class PersistBoundaryConfig:
         boundary_data = []
         try:
             if query is None:
-                print("None")
+                
                 resposnse_boundary = requests.get(url, json={}, timeout=50)
             else:
                 resposnse_boundary = requests.get(url, json=query, timeout=50)
-            # print(resposnse)
-            # print(resposnse.json())
-            print(url, query)
+            
             if resposnse_boundary.status_code == 200:
                 boundary_data = resposnse_boundary.json()["data"]
         except Exception as ex:
@@ -71,7 +69,7 @@ class PersistBoundaryConfig:
             # boundarydata
 
             for bd in boundarydata:
-                print(bd)
+                
                 if bd["camera_id"] not in boundaryconfig:
                     boundaryconfig[bd["camera_id"]] = {}
                     boundaryconfig[bd["camera_id"]][bd["usecase_id"]] = {}
@@ -89,7 +87,7 @@ class PersistBoundaryConfig:
                         "y"
                     ] = [bd["y_coordinate"]]
                 else:
-                    print("===else===")
+                    
                     if bd["boundary_id"] not in boundaryconfig[bd["camera_id"]][bd["usecase_id"]]:
                         boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]] = {}
                         boundaryconfig[bd["camera_id"]][bd["usecase_id"]][bd["boundary_id"]]["color"]=bd["color"]
