@@ -132,5 +132,4 @@ for dt in postconf_data:
 
 
 print(postconfigdata)
-print(hashlib.sha256(str(postconfigdata).encode()).hexdigest())
 print(json.dumps(postconfigdata,indent=4))   

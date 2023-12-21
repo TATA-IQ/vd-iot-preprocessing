@@ -203,7 +203,7 @@ class Caching:
                 self.persist_data()
                 # print(items)
                 # print("updated at===>", datetime.now())
-                console.success(f"Preprocess cache updated at {0}".format(datetime.now()))
+                console.success("Preprocess cache updated at {0}".format(datetime.now()))
                 
                 # if len(set(items).intersection(set(["camera-group","camera","online-input","schedule",
                 # "template","boundary-group","class","computation","incident","model",
