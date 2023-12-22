@@ -4,6 +4,7 @@ Code to start PreProcessing and Cosnumers
 import os
 import requests
 import consul
+import time
 from shared_memory_dict import SharedMemoryDict
 from sourcelogs.logger import create_rotating_log
 from src.consumerpool import PoolConsumer
