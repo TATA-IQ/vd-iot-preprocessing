@@ -6,7 +6,7 @@ data=r.get("postprocess")
 print("===============PreProcess Cache Data========")
 jsondata=json.loads(data)
 
-print(jsondata)
+# print(jsondata)
 
-print(len(jsondata.keys()))
+print(jsondata.keys())
 print("*********************************")

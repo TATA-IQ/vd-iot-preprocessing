@@ -1,0 +1,228 @@
+Fetch Time for 24 is 4.404746
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf0a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.12856
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfe80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.055853
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667738bb0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.883614
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705ac0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.653129
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfeb0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.371575
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bff10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.379069
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c5b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.160809
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705d90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.098096
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf2e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.846508
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf0d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 8.17315
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677389d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.956239
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705eb0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.032437
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfd90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.23725
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf700>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.634205
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c730>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.278145
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705ee0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 1.701318
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf5b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.36167
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfe80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 6.480788
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667738eb0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.420209
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705f10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.287397
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfa60>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.809622
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfb50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.40689
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c490>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.66388
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705c70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.168657
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf700>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.264292
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfca0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.336316
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667738d90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.01606
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705c10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.415728
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfbe0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.229572
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf6d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.495513
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c310>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.893614
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705160>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.821576
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf250>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 7.457993
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bff10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.934235
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677388e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.033772
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677058e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.816918
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf4c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.540313
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf820>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.234713
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c850>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.429334
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705c70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 1.945701
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf280>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.941761
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf490>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.28341
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667738e50>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 1.805489
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677058e0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.289688
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf910>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.305287
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf130>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.807834
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c610>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.548784
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677054f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.569722
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf820>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.185213
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf3d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.126377
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667738c70>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.358291
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705760>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.05737
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf6a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.590504
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfa90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.197164
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c130>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.581531
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677058b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.151114
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfcd0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.300385
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfe20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.873323
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667738850>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.385854
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705610>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.059471
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf0d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.716422
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfc10>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.729484
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c820>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.125454
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705fa0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.948871
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667701760>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.874128
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf790>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.702408
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfc40>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.249171
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705b20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.832697
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf130>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.768223
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bffd0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 1.605117
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c4c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.095216
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705970>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.180918
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667719400>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.433776
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf430>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.324823
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf3d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.06327
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705c40>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.632068
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf160>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.901736
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfe80>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.21164
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c190>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.722301
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705340>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.824708
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667701790>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.267643
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf040>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.217023
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf940>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.450162
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705910>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.7722
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf100>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.352399
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfdf0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.153999
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c520>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.276893
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705ee0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 6.940219
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667701760>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 5.379673
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf6d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.168635
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf9d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.139697
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705100>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.333454
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf4c0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.355017
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf280>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.372034
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c610>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.178309
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677055b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.114835
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667701340>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.651192
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf6d0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.86726
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfa90>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.377477
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705490>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.496599
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf9a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.909062
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bfee0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.220142
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c2b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.046134
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705850>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.571859
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667701ca0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 1.994195
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf5b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.338013
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf700>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.181771
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667705e20>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.060389
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf580>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.972504
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf430>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.825343
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f366764c730>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 2.856589
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677054f0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.519286
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667701130>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 4.298745
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf5b0>: Failed to establish a new connection: [Errno 111] Connection refused'))

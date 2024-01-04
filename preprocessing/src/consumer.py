@@ -191,7 +191,7 @@ class RawImageConsumer:
                 # print("====data===",data)
                 usecase = []
                 usecase = list(data.keys())
-                
+                console.info(f"{self.camera_id} have usecases {usecase}")
                 
                 
                 self.previous_time = datetime.now()
