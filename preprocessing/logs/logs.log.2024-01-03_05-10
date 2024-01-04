@@ -226,3 +226,11 @@ Fetch Time for 24 is 3.519286
 Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f3667701130>: Failed to establish a new connection: [Errno 111] Connection refused'))
 Fetch Time for 24 is 4.298745
 Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf5b0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 1.554127
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf730>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.464849
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36677053a0>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 1.950045
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf130>: Failed to establish a new connection: [Errno 111] Connection refused'))
+Fetch Time for 24 is 3.715087
+Exception called for cameraid 24 and usecase_id 23 exception HTTPConnectionPool(host='172.16.0.178', port=8007): Max retries exceeded with url: /postprocess (Caused by NewConnectionError('<urllib3.connection.HTTPConnection object at 0x7f36676bf310>: Failed to establish a new connection: [Errno 111] Connection refused'))
