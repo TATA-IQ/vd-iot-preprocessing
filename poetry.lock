@@ -158,6 +158,24 @@ files = [
 ]
 
 [[package]]
+name = "console-logging"
+version = "0.0.5.0"
+description = "Better, prettier commandline logging."
+optional = false
+python-versions = "*"
+files = [
+    {file = "console-logging-0.0.5.0.tar.gz", hash = "sha256:112818db84663a194ca445ea17413f98fecbb979605951f6d232e6536a9b5263"},
+    {file = "console_logging-0.0.5.0-py2.py3-none-any.whl", hash = "sha256:f41a11667c200adefdf9a346a914aeb9d6b919915a0bbc3a69f88ecd3e72d8e0"},
+]
+
+[package.dependencies]
+termcolor = "*"
+
+[package.extras]
+dev = ["check-manifest"]
+test = ["coverage"]
+
+[[package]]
 name = "distlib"
 version = "0.3.7"
 description = "Distribution utilities"
@@ -1154,6 +1172,20 @@ files = [
 ]
 
 [[package]]
+name = "termcolor"
+version = "2.4.0"
+description = "ANSI color formatting for output in terminal"
+optional = false
+python-versions = ">=3.8"
+files = [
+    {file = "termcolor-2.4.0-py3-none-any.whl", hash = "sha256:9297c0df9c99445c2412e832e882a7884038a25617c60cea2ad69488d4040d63"},
+    {file = "termcolor-2.4.0.tar.gz", hash = "sha256:aab9e56047c8ac41ed798fa36d892a37aca6b3e9159f3e0c24bc64a9b3ac7b7a"},
+]
+
+[package.extras]
+tests = ["pytest", "pytest-cov"]
+
+[[package]]
 name = "tomli"
 version = "2.0.1"
 description = "A lil' TOML parser"
@@ -1305,4 +1337,4 @@ testing = ["big-O", "jaraco.functools", "jaraco.itertools", "more-itertools", "p
 [metadata]
 lock-version = "2.0"
 python-versions = ">=3.9,<3.11"
-content-hash = "a5312beed7f2179574365c1db2c5eb1063dfd54a680ef9160f7f0f111537f102"
+content-hash = "1a4bc231e5c6ac6d7a44eb8ea8e70b36af1b2f258e8d1b2a7eae27943ef717c3"
