@@ -4,7 +4,7 @@ Redis Caching
 import json
 import threading
 from datetime import datetime
-
+import time
 import redis
 import requests
 from caching.boundary_caching import PersistBoundaryConfig
@@ -134,7 +134,17 @@ class Caching:
         """
         Save Data To cache
         """
-        camgroup_conf = self.get_cam_group(self.customer, self.location, self.subsite)
+        camgroup_conf=None
+        while True:
+            try:
+                camgroup_conf = self.get_cam_group(self.customer, self.location, self.subsite)
+                
+                if camgroup_conf is not None:
+                    break
+            except Exception as ex:
+                console.error(f"Api is not up {ex}")
+                time.sleep(10)
+                continue
         if self.camera_group is not None and len(camgroup_conf) > 0:
             self.camera_group = self.camera_group + camgroup_conf
         elif self.camera_group is None and len(camgroup_conf) > 0:
@@ -153,9 +163,25 @@ class Caching:
         jsonreq = {"camera_group_id": self.camera_group}
         
         #tempschedule, _ = self.schedule.persist_data(jsonreq)
+
+        # while True:
+        tempschedule,tempdict,postprocessconfig,boundaryconfig=None,None,None,None
+        
+            
         tempschedule, _ = self.schedule.persist_data()
+
+                
         
         tempdict = self.preprocs.persist_data(jsonreq)
+                
+        
+        postprocessconfig = self.postprocess.persist_data()
+                
+        
+        boundaryconfig = self.boundary.persist_data()
+                
+        
+
         
 
         preprocessconfig = tempdict
@@ -165,7 +191,9 @@ class Caching:
         # else:
         #     secheduleconfig.update(secheduleconfig)
 
-        postprocessconfig = self.postprocess.persist_data()
+        # postprocessconfig = self.postprocess.persist_data()
+        console.info("Persistingd data")
+
         boundaryconfig = self.boundary.persist_data()
         self.r.set("postprocess", json.dumps(postprocessconfig))
         

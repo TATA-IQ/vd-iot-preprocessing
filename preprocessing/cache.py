@@ -18,7 +18,7 @@ def get_service_address(consul_client,service_name,env):
         
         try:
             services=consul_client.catalog.service(service_name)[1]
-            print(services)
+            console.info(f"Services {services}")
             for i in services:
                 if env == i["ServiceID"].split("-")[-1]:
                     return i
@@ -34,16 +34,16 @@ def get_confdata(consul_conf):
     env=consul_conf["env"]
     
     endpoint_addr="http://"+pipelineconf["ServiceAddress"]+":"+str(pipelineconf["ServicePort"])
-    print("endpoint addr====",endpoint_addr)
+    console.info(f"endpoint addr {endpoint_addr}")
     while True:
         
         try:
             res=requests.get(endpoint_addr+"/")
             endpoints=res.json()
-            print("===got endpoints===",endpoints)
+            console.info(f"endpoints {endpoints}")
             break
         except Exception as ex:
-            print("endpoint exception==>",ex)
+            console.error(f"endpoint exception: {ex}")
             time.sleep(10)
             continue
     
@@ -51,52 +51,49 @@ def get_confdata(consul_conf):
         try:
             res=requests.get(endpoint_addr+endpoints["endpoint"]["preprocess"])
             preprocessconf=res.json()
-            print("preprocessconf===>",preprocessconf)
+            console.info(f"preprocessconf {preprocessconf}")
             break
             
 
         except Exception as ex:
-            print("preprocessconf exception==>",ex)
+            console.error(f"preprocessconf exception {ex}")
             time.sleep(10)
             continue
     while True:
         try:
             res=requests.get(endpoint_addr+endpoints["endpoint"]["kafka"])
             kafkaconf=res.json()
-            print("kafkaconf===>",kafkaconf)
+            console.info(f"kafkaconf {kafkaconf}")
             break
             
 
         except Exception as ex:
-            print("kafkaconf exception==>",ex)
+            console.error(f"kafkaconf exception {ex}")
             time.sleep(10)
             continue
     print("=======searching for dbapi====")
     while True:
         try:
-            print("=====consul search====")
             dbconf=get_service_address(consul_client,"dbapi",consul_conf["env"])
-            print("****",dbconf)
+            
             dbhost=dbconf["ServiceAddress"]
             dbport=dbconf["ServicePort"]
             res=requests.get(endpoint_addr+endpoints["endpoint"]["dbapi"])
             dbres=res.json()
-            print("===got db conf===")
-            print(dbres)
             break
         except Exception as ex:
-            print("db discovery exception===",ex)
+            console.error(f"db discovery exception {ex}")
             time.sleep(10)
             continue
     for i in dbres["apis"]:
-        print("====>",i)
+        
         dbres["apis"][i]="http://"+dbhost+":"+str(dbport)+dbres["apis"][i]
 
     
     
-    print("======dbres======")
-    print(dbres)
-    print(preprocessconf)
+    # print("======dbres======")
+    # print(dbres)
+    # print(preprocessconf)
     #postprocessapi="http://"+pphost+":"+str(ppport)+preprocessconf["postprocess"]
     return  dbres,preprocessconf,kafkaconf
 

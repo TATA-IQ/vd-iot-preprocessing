@@ -18,7 +18,7 @@ def get_service_address(consul_client,service_name,env):
         
         try:
             services=consul_client.catalog.service(service_name)[1]
-            console.info(f" Service Extracted from Cosnul For {0} : {1}".format(service_name,services))
+            console.info(f" Service Extracted from Cosnul For {service_name} : {services}")
             for i in services:
                 if env == i["ServiceID"].split("-")[-1]:
                     return i
